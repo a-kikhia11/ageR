@@ -1,2 +1,2 @@
 # ageR
-Athlete Growth &amp; Maturation
+Athlete Growth &amp; Maturation R Package
