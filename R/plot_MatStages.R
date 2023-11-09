@@ -15,6 +15,8 @@
 
 plot_MatStages <- function(data, athlete = NULL, date = NULL, agegroup = NULL, gender = NULL) {
 
+  data <- maturation_cm(data)
+
   if (!is.null(athlete)) {
     data <- data[data$`Player Name` %in% athlete, ]
   }

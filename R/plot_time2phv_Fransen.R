@@ -21,6 +21,8 @@
 
 plot_time2phv_Fransen <- function(data, athlete = NULL, date = NULL, agegroup = NULL) {
 
+  data <- maturation_cm(data)
+
   data <- data[data$Gender == "Male", ]
 
   if (!is.null(athlete)) {

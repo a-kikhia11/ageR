@@ -16,6 +16,8 @@
 
 plot_PAH_cm <- function(data, athlete = NULL, date = NULL, agegroup = NULL) {
 
+  data <- maturation_cm(data)
+
   if (!is.null(athlete)) {
     data <- data[data$`Player Name` %in% athlete, ]
   }

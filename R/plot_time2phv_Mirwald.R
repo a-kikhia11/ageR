@@ -21,6 +21,8 @@
 
 plot_time2phv_Mirwald <- function(data, athlete = NULL, date = NULL, agegroup = NULL, gender = NULL) {
 
+  data <- maturation_cm(data)
+
   if (!is.null(athlete)) {
     data <- data[data$`Player Name` %in% athlete, ]
   }

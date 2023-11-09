@@ -23,6 +23,8 @@
 
 plot_growthcurve <- function(data, athlete, reference, gender) {
 
+  data <- maturation_cm(data)
+
   if (reference == "US") {
     curve_data <- ageR::CDC_curves
   } else if (reference == "UK") {
@@ -84,7 +86,7 @@ plot_growthcurve <- function(data, athlete, reference, gender) {
     ggplot2::geom_point(data = athlete, ggplot2::aes(Age, `Height (CM)`), color = "deeppink", size = 3) +
     ggplot2::geom_point(data = athlete %>% dplyr::mutate(Age = 21), ggplot2::aes(Age, `Estimated Adult Height (CM)`), color = "deeppink", size = 3) +
     ggplot2::geom_text(data = athlete %>% dplyr::mutate(Age = 21), ggplot2::aes(Age, `Estimated Adult Height (CM)`, label = `Estimated Adult Height (CM)`), color = "deeppink", size = 3, vjust = -1) +
-    ggplot2::geom_curve(data = athlete %>% dplyr::mutate(Age2 = 21), ggplot2::aes(x = Age, y = `Height (CM)`, xend = Age2, yend = `Estimated Adult Height (CM)`), color = "deeppink", curvature = -0.05, size = 0.5, linetype = 1) +
+    ggplot2::geom_curve(data = athlete %>% dplyr::mutate(Age2 = 21), ggplot2::aes(x = Age, y = `Height (CM)`, xend = Age2, yend = `Estimated Adult Height (CM)`), color = "deeppink", curvature = -0.05, linewidth = 0.5, linetype = 1) +
     ggplot2::scale_x_continuous(breaks = seq(0, 20, by = 2.5)) +
     ggplot2::ylim(75, 220) +
     ggplot2::ylab("Height (CM) \n") + ggplot2::xlab("Age") +

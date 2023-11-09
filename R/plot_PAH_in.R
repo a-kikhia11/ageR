@@ -16,6 +16,8 @@
 
 plot_PAH_in <- function(data, athlete = NULL, date = NULL, agegroup = NULL) {
 
+  data <- maturation_in(data)
+
   if (!is.null(athlete)) {
     data <- data[data$`Player Name` %in% athlete, ]
   }
