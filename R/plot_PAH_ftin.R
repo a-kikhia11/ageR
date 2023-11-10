@@ -11,10 +11,10 @@
 #'
 #' @export
 #' @examples
-#' plot_PAH_in(data_sample)
+#' plot_PAH_ftin(data_sample)
 #'
 
-plot_PAH_in <- function(data, athlete = NULL, date = NULL, agegroup = NULL) {
+plot_PAH_ftin <- function(data, athlete = NULL, date = NULL, agegroup = NULL) {
 
   data <- maturation_in(data)
 
@@ -30,15 +30,22 @@ plot_PAH_in <- function(data, athlete = NULL, date = NULL, agegroup = NULL) {
     data <- data[data$`Age Group @ Testing` %in% date, ]
   }
 
+  inches_to_feet <- function(inches) {
+    feet <- floor(inches / 12)
+    remaining_inches <- round(inches %% 12,2)
+    return(paste0(feet, "'", remaining_inches, '"'))
+  }
+
   dat <- data %>%
-    dplyr::mutate(`Error (IN)` = ifelse(Gender == "Male", 2.1 / 2, 1.7 / 2))
+    dplyr::mutate(`Error (IN)` = ifelse(Gender == "Male", 2.1 / 2, 1.7 / 2)) %>%
+    dplyr::mutate(`Error (FT'IN")` = inches_to_feet(`Error (IN)`))
 
   plot <- ggplot2::ggplot(data = dat, ggplot2::aes(x = `Estimated Adult Height (IN)`, y = reorder(`Player Name`, `Estimated Adult Height (IN)`))) +
     ggplot2::geom_pointrange(ggplot2::aes(xmin = `Estimated Adult Height (IN)` - `Error (IN)`, xmax = `Estimated Adult Height (IN)` + `Error (IN)`)) +
     ggplot2::facet_wrap(~Gender, scales = "free_y") +
-    ggplot2::scale_x_continuous(breaks = seq(0, 300, by = 5)) +
-    ggplot2::ylab("") + ggplot2::xlab("\n Inches") +
-    ggplot2::ggtitle("\n Estimated Adult Height (IN) \n") +
+    ggplot2::scale_x_continuous(breaks = seq(0, 300, by = 5), labels = function(x) sapply(x, inches_to_feet)) +
+    ggplot2::ylab("") + ggplot2::xlab("\n Feet & Inches") +
+    ggplot2::ggtitle("\n Estimated Adult Height (FT'IN\") \n") +
     ggplot2::theme_light() +
     ggplot2::theme(axis.title.x = ggplot2::element_text(color = "grey", hjust = 1),
                    panel.grid.minor = ggplot2::element_blank(),
