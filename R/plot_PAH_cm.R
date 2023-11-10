@@ -1,12 +1,12 @@
 #' Predicted Adult Height Plot (cm)
 #'
 #' This function returns a ggplot object showing the predicted adult height for each athlete in the dataset. Can be further filtered by athlete name/id and/or age.
-#' For the same plot in inches use **`plot_PAH_in()`**
+#' For the same plot in inches use **`plot_PAH_in()`** and for feet and inches use **`plot_PAH_ftin()`**
 #'
 #' @param data A data frame. Containing the raw data we wish to analyze.
 #' @param athlete A character vector. Names of athletes to include in the plot.
 #' @param date A character vector. Dates to filter the data (in yyyy-mm-dd).
-#' @param age A numeric vector. Age of athletes to include in the plot.
+#' @param agegroup A character vector. Age Group of athletes at time of testing.
 #' @return A plot `(ggplot)`
 #'
 #' @export

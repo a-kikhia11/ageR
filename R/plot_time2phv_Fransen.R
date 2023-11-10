@@ -10,8 +10,7 @@
 #' @param data A data frame. The object containing the raw data we wish to analyze.
 #' @param athlete A character vector. Names of athletes to include in the plot.
 #' @param date A character vector. Dates to filter the data (in yyyy-mm-dd).
-#' @param age A numeric vector. Age of athletes to include in the plot.
-#' @param gender A character vector. Gender of athletes to include in the plot (default to include ALL athletes)
+#' @param agegroup A character vector. Age Group of athletes at time of testing.
 #' @return A dumbbell plot `(ggplot)`
 #'
 #' @export
