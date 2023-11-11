@@ -4,7 +4,13 @@
 \alias{plot_MatStages}
 \title{% Adult Height vs Mirwald Maturity Offset in Years}
 \usage{
-plot_MatStages(data, athlete = NULL, date = NULL, age = NULL, gender = "All")
+plot_MatStages(
+  data,
+  athlete = NULL,
+  date = NULL,
+  agegroup = NULL,
+  gender = NULL
+)
 }
 \arguments{
 \item{data}{A data frame. Containing the raw data we wish to analyze.}
@@ -13,13 +19,15 @@ plot_MatStages(data, athlete = NULL, date = NULL, age = NULL, gender = "All")
 
 \item{date}{A character vector. Dates to filter the data (in yyyy-mm-dd).}
 
-\item{age}{A numeric vector. Age of athletes to include in the plot.}
+\item{agegroup}{A character vector. Age Group of athletes at time of testing.}
+
+\item{gender}{A character vector. Gender of athletes to include in the plot (default to include ALL athletes)}
 }
 \value{
-A plot `(ggplot)`
+A plot (ggplot)
 }
 \description{
-This function returns a scatterplot showing the % of Adult Height vs Mirwald Maturity Offset `(in years)`.
+This function returns a scatterplot showing the % of Adult Height vs Mirwald Maturity Offset (in years).
 }
 \examples{
 plot_MatStages(data_sample)

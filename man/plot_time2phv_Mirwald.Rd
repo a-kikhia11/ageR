@@ -8,8 +8,8 @@ plot_time2phv_Mirwald(
   data,
   athlete = NULL,
   date = NULL,
-  age = NULL,
-  gender = "All"
+  agegroup = NULL,
+  gender = NULL
 )
 }
 \arguments{
@@ -19,7 +19,7 @@ plot_time2phv_Mirwald(
 
 \item{date}{A character vector. Dates to filter the data (in yyyy-mm-dd).}
 
-\item{age}{A numeric vector. Age of athletes to include in the plot.}
+\item{agegroup}{A character vector. Age Group of athletes at time of testing.}
 
 \item{gender}{A character vector. Gender of athletes to include in the plot (default to include ALL athletes)}
 }
@@ -30,7 +30,7 @@ A dumbbell plot `(ggplot)`
 This function returns a dumbbell plot showing the difference (in years) between current age and estimated age at PHV for each athlete in the dataset using the Mirwald Maturity Offset method. Can be further filtered by athlete, age, and date.
 }
 \details{
-Athletes are ordered by the difference between current and estimated age at PHV, as shown on the right of the plot, from highest to lowest.
+Athletes are ordered by the difference between current and estimated age at PHV, as shown on the right side of the plot, from highest to lowest.
 
 Check the references cited on this package for further details on how these metrics are calculated.
 }

@@ -10,7 +10,27 @@ maturation_in(data)
 \item{data}{A data frame. See data_sample for formatting reference.}
 }
 \value{
-
+A data frame with the following columns:
+         -`Player Name`: A chracter string. The name of the athlete
+         -`Age Group @ Testing`: A chracter string. Athletes Age Group at the time of testing
+         -`Gender`: A character String. The gender of the athlete
+         -`Testing Date`: A date. The data collection date for each athlete
+         -`Birth Year`: The year of birth for every athlete
+         -`Quarter`: The yearly quarter in which athletes were born
+         -`Age`: The age of the athlete in years
+         -`Height (IN)`: The height in inches for each athlete at the time of testing
+         -`Height (FT'IN")`: The height in feet and inches for each athlete at the time of testing
+         -`Estimated Adult Height (IN)`: The estimated adult height in inches of the athlete using the Khamis-Roche method. See references for further details
+         -`Estimated Adult Height (FT'IN")`: The estimated adult height in feet and inches of the athlete using the Khamis-Roche method. See references for further details
+         -`% Adult Height`: Their current height expressed as %, compared to their predicted adult height
+         -`Z-Score`: Estimated biological maturity status expressed as a z-score, using the percentage of adult stature attained at observation and age-specific means and standard deviations followed longitudinally in the Berkeley Growth Study. See references for further details
+         -`Maturity Status (%AH)`: A z-score of -0.5 to +0.5 was used to define average maturity status; a z-score greater than +0.5 defined early while a z-score below -0.5 defined late status. See references for further details
+         -`Remaining Growth (IN)`: The difference between their predicted adult height and current height, in inches
+         -`Mirwald MO (years)`: Difference between their current age and their estimated age at PHV, espressed in years, using the Mirwald Method
+         -`Age @ PHV (Mirwald)`: The estimated age of the player at the time of Peak Height Velocity. Calculated using the Mirwald equation. See references for further details
+         -`Fransen MO (years)`: Difference between their current age and their estimated age at PHV, espressed in years, using the Fransen Method
+         -`Age @ PHV (Fransen)`: The estimated age of the player at the time of Peak Height Velocity. Calculated using the Fransen equation. See references for further details
+         -`Bio-Band`: Categries for bio-banding based on the work from Cumming et al, 2017. See references for further details
 }
 \description{
 This function returns a dataframe with computed growth and maturation metrics in inches (in) calculated from the imported data. See references for further details about the methodology behind each metric.

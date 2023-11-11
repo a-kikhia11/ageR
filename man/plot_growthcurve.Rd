@@ -4,7 +4,7 @@
 \alias{plot_growthcurve}
 \title{Height (current + predicted) vs reference growth curves}
 \usage{
-plot_growthcurve(data, athlete, reference, gender = "Male")
+plot_growthcurve(data, athlete, reference, gender)
 }
 \arguments{
 \item{data}{A data frame. The object containing the raw data we wish to analyze.}
@@ -12,6 +12,8 @@ plot_growthcurve(data, athlete, reference, gender = "Male")
 \item{athlete}{A character string with the name of the athlete we wish to plot.}
 
 \item{reference}{A character string. Choose US (CDC) or UK (UK90) growth references.}
+
+\item{gender}{A character vector. Gender of athletes to include in the plot (default to include ALL athletes)}
 }
 \value{
 A plot `(ggplot)`
@@ -27,7 +29,7 @@ Data for UK growth charts was obtained from the British 1990 growth reference. P
 Be aware, players from different populations to the one used on these growth charts may not be well represented.
 }
 \examples{
-plot_growthcurve(data_sample, "Athlete 08", UK)
-plot_growthcurve(data_sample, "Athlete 08", US)
+plot_growthcurve(data_sample, "Athlete 08", UK, Male)
+plot_growthcurve(data_sample, "Athlete 17", US, Female)
 
 }

@@ -4,16 +4,24 @@
 \alias{plot_MatOffset_Mirwald}
 \title{Maturity Offset Plot (Mirwald)}
 \usage{
-plot_MatOffset_Mirwald(data, athlete = NULL, date = NULL, age = NULL)
+plot_MatOffset_Mirwald(
+  data,
+  athlete = NULL,
+  date = NULL,
+  agegroup = NULL,
+  gender = NULL
+)
 }
 \arguments{
 \item{data}{A data frame containing the raw data we wish to analyze.}
 
+\item{athlete}{A character vector. Names of athletes to include in the plot.}
+
 \item{date}{A character vector. Dates to filter the data (in yyyy-mm-dd).}
 
-\item{age}{A numeric vector. Age of athletes to include in the plot.}
+\item{agegroup}{A character vector. Age Group of athletes at time of testing.}
 
-\item{athletes}{A character vector. Names of athletes to include in the plot.}
+\item{gender}{A character vector. Gender of athletes to include in the plot (default to include ALL athletes)}
 }
 \value{
 A lollipop plot `(ggplot)`

@@ -4,7 +4,7 @@
 \alias{plot_PAH_in}
 \title{Predicted Adult Height Plot (in)}
 \usage{
-plot_PAH_in(data, athlete = NULL, date = NULL, age = NULL)
+plot_PAH_in(data, athlete = NULL, date = NULL, agegroup = NULL)
 }
 \arguments{
 \item{data}{A data frame. Containing the raw data we wish to analyze.}
@@ -13,14 +13,14 @@ plot_PAH_in(data, athlete = NULL, date = NULL, age = NULL)
 
 \item{date}{A character vector. Dates to filter the data (in yyyy-mm-dd).}
 
-\item{age}{A numeric vector. Age of athletes to include in the plot.}
+\item{agegroup}{A character vector. Age Group of athletes at time of testing.}
 }
 \value{
 A plot `(ggplot)`
 }
 \description{
 This function returns a ggplot object showing the predicted adult height in inches for each athlete in the dataset. Can be further filtered by athlete name, date, and age.
-For the same plot in centimeters use **`plot_predicted_height_cm()`**
+For the same plot in centimeters use **`plot_PAH_cm()`** and for feet and inches use **`plot_PAH_ftin()`**
 }
 \examples{
 plot_PAH_in(data_sample)

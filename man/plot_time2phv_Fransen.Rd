@@ -4,13 +4,7 @@
 \alias{plot_time2phv_Fransen}
 \title{Time to PHV Dumbbell Plot (Fransen)}
 \usage{
-plot_time2phv_Fransen(
-  data,
-  athlete = NULL,
-  date = NULL,
-  age = NULL,
-  gender = "All"
-)
+plot_time2phv_Fransen(data, athlete = NULL, date = NULL, agegroup = NULL)
 }
 \arguments{
 \item{data}{A data frame. The object containing the raw data we wish to analyze.}
@@ -19,9 +13,7 @@ plot_time2phv_Fransen(
 
 \item{date}{A character vector. Dates to filter the data (in yyyy-mm-dd).}
 
-\item{age}{A numeric vector. Age of athletes to include in the plot.}
-
-\item{gender}{A character vector. Gender of athletes to include in the plot (default to include ALL athletes)}
+\item{agegroup}{A character vector. Age Group of athletes at time of testing.}
 }
 \value{
 A dumbbell plot `(ggplot)`
