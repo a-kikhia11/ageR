@@ -7,6 +7,6 @@
 vars (...)
 }
 \description{
-See \code{dplyr::\link[dplyer:select]{vars}} for details.
+See \code{dplyr::\link[dplyr:select]{vars}} for details.
 }
 \keyword{internal}
