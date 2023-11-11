@@ -18,8 +18,8 @@
 #'
 #' @export
 #' @examples
-#' plot_growthcurve(data_sample, "Athlete 08", UK, Male)
-#' plot_growthcurve(data_sample, "Athlete 17", US, Female)
+#' plot_growthcurve(data_sample, "Athlete 08", "UK", "Male")
+#' plot_growthcurve(data_sample, "Athlete 17", "US", "Female")
 #'
 
 plot_growthcurve <- function(data, athlete, reference, gender) {
