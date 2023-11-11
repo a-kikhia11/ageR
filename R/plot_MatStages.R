@@ -1,4 +1,4 @@
-#' % Adult Height vs Mirwald Maturity Offset in Years
+#' Adult Height vs Mirwald Maturity Offset in Years
 #'
 #' This function returns a scatterplot showing the % of Adult Height vs Mirwald Maturity Offset (in years).
 #'

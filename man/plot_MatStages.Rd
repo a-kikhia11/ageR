@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot_MatStages.R
 \name{plot_MatStages}
 \alias{plot_MatStages}
-\title{% Adult Height vs Mirwald Maturity Offset in Years}
+\title{Adult Height vs Mirwald Maturity Offset in Years}
 \usage{
 plot_MatStages(
   data,
