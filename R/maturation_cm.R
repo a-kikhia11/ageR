@@ -6,26 +6,24 @@
 #'
 #' @param data A data frame. See data_sample for formatting reference.
 #' @return A data frame with the following columns:
-#'  \describe{
-#'          \item{`Player Name`}{A chracter string. The name of the athlete}
-#'          \item{`Age Group @ Testing`}{A chracter string. Athletes Age Group at the time of testing}
-#'          \item{Gender}{A character String. The gender of the athlete}
-#'          \item{`Testing Date`}{A date. The data collection date for each athlete}
-#'          \item{`Birth Year`}{The year of birth for every athlete}
-#'          \item{Age}{The age of the athlete in years}
-#'          \item{Quarter}{The yearly quarter in which athletes were born}
-#'          \item{`Height (CM)`}{The height in cms for each athlete at the time of testing}
-#'          \item{`Estimated Adult Height (CM)`}{The estimated adult height in cms of the athlete using the Khamis-Roche method. See references for further details}
-#'          \item{`% Adult Height`}{Their current height expressed as %, compared to their predicted adult height}
-#'          \item{`Z-Score`}{Estimated biological maturity status expressed as a z-score, using the percentage of adult stature attained at observation and age-specific means and standard deviations followed longitudinally in the Berkeley Growth Study. See references for further details}
-#'          \item{`Maturity Status (%AH)`}{A z-score of -0.5 to +0.5 was used to define average maturity status; a z-score greater than +0.5 defined early while a z-score below -0.5 defined late status. See references for further details}
-#'          \item{`Remaining Growth (CM)`}{The difference between their predicted adult height and current height, in cms}
-#'          \item{`Mirwald MO (years)`}{Difference between their current age and their estimated age at PHV, espressed in years, using the Mirwald Method}
-#'          \item{`Age @ PHV (Mirwald)`}{The estimated age of the player at the time of Peak Height Velocity. Calculated using the Mirwald equation. See references for further details}
-#'          \item{`Fransen MO (years)`}{Difference between their current age and their estimated age at PHV, espressed in years, using the Fransen Method}
-#'          \item{`Age @ PHV (Fransen)`}{The estimated age of the player at the time of Peak Height Velocity. Calculated using the Fransen equation. See references for further details}
-#'          \item{`Bio-Band`}{Categries for bio-banding based on the work from Cumming et al, 2017. See references for further details}
-#'     }
+#'          -`Player Name`: A chracter string. The name of the athlete
+#'          -`Age Group @ Testing`: A chracter string. Athletes Age Group at the time of testing
+#'          -`Gender`: A character String. The gender of the athlete
+#'          -`Testing Date`: A date. The data collection date for each athlete
+#'          -`Birth Year`: The year of birth for every athlete
+#'          -`Age`: The age of the athlete in years
+#'          -`Quarter`: The yearly quarter in which athletes were born
+#'          -`Height (CM)`: The height in cms for each athlete at the time of testing
+#'          -`Estimated Adult Height (CM)`: The estimated adult height in cms of the athlete using the Khamis-Roche method. See references for further details
+#'          -`% Adult Height`: Their current height expressed as %, compared to their predicted adult height
+#'          -`Z-Score`: Estimated biological maturity status expressed as a z-score, using the percentage of adult stature attained at observation and age-specific means and standard deviations followed longitudinally in the Berkeley Growth Study. See references for further details
+#'          -`Maturity Status (%AH)`: A z-score of -0.5 to +0.5 was used to define average maturity status; a z-score greater than +0.5 defined early while a z-score below -0.5 defined late status. See references for further details
+#'          -`Remaining Growth (CM)`: The difference between their predicted adult height and current height, in cms
+#'          -`Mirwald MO (years)`: Difference between their current age and their estimated age at PHV, espressed in years, using the Mirwald Method
+#'          -`Age @ PHV (Mirwald)`: The estimated age of the player at the time of Peak Height Velocity. Calculated using the Mirwald equation. See references for further details
+#'          -`Fransen MO (years)`: Difference between their current age and their estimated age at PHV, espressed in years, using the Fransen Method
+#'          -`Age @ PHV (Fransen)`: The estimated age of the player at the time of Peak Height Velocity. Calculated using the Fransen equation. See references for further details
+#'          -`Bio-Band`: Categries for bio-banding based on the work from Cumming et al, 2017. See references for further details
 #'
 #'
 #' @references
