@@ -6,7 +6,7 @@
 #'
 #'
 #' @param data A data frame containing the raw data we wish to analyze.
-#' @param athletes A character vector. Names of athletes to include in the plot.
+#' @param athlete A character vector. Names of athletes to include in the plot.
 #' @param date A character vector. Dates to filter the data (in yyyy-mm-dd).
 #' @param agegroup A character vector. Age Group of athletes at time of testing.
 #' @param gender A character vector. Gender of athletes to include in the plot (default to include ALL athletes)
@@ -30,7 +30,7 @@ plot_MatOffset_Mirwald <- function(data, athlete = NULL, date = NULL, agegroup =
   }
 
   if (!is.null(agegroup)) {
-    data <- data[data$`Age Group @ Testing` %in% date, ]
+    data <- data[data$`Age Group @ Testing` %in% agegroup, ]
   }
 
   if (!is.null(gender)) {

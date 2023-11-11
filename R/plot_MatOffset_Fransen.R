@@ -6,7 +6,7 @@
 #'
 #'
 #' @param data A data frame containing the raw data we wish to analyze.
-#' @param athletes A character vector. Names of athletes to include in the plot.
+#' @param athlete A character vector. Names of athletes to include in the plot.
 #' @param date A character vector. Dates to filter the data (in yyyy-mm-dd).
 #' @param agegroup A character vector. Age Group of athletes at time of testing.
 #' @return A lollipop plot `(ggplot)`
@@ -31,7 +31,7 @@ plot_MatOffset_Fransen <- function(data, athlete = NULL, date = NULL, agegroup =
   }
 
   if (!is.null(agegroup)) {
-    data <- data[data$`Age Group @ Testing` %in% date, ]
+    data <- data[data$`Age Group @ Testing` %in% agegroup, ]
   }
 
   plot <- data %>%

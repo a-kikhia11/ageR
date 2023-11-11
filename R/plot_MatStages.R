@@ -1,13 +1,13 @@
 #' % Adult Height vs Mirwald Maturity Offset in Years
 #'
-#' This function returns a scatterplot showing the % of Adult Height vs Mirwald Maturity Offset `(in years)`.
+#' This function returns a scatterplot showing the % of Adult Height vs Mirwald Maturity Offset (in years).
 #'
 #' @param data A data frame. Containing the raw data we wish to analyze.
 #' @param athlete A character vector. Names of athletes to include in the plot.
 #' @param date A character vector. Dates to filter the data (in yyyy-mm-dd).
 #' @param agegroup A character vector. Age Group of athletes at time of testing.
 #' @param gender A character vector. Gender of athletes to include in the plot (default to include ALL athletes)
-#' @return A plot `(ggplot)`
+#' @return A plot (ggplot)
 #'
 #' @export
 #' @examples
@@ -27,7 +27,7 @@ plot_MatStages <- function(data, athlete = NULL, date = NULL, agegroup = NULL, g
   }
 
   if (!is.null(agegroup)) {
-    data <- data[data$`Age Group @ Testing` %in% date, ]
+    data <- data[data$`Age Group @ Testing` %in% agegroup, ]
   }
 
   if (!is.null(gender)) {

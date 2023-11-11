@@ -32,7 +32,7 @@ plot_time2phv_Mirwald <- function(data, athlete = NULL, date = NULL, agegroup = 
   }
 
   if (!is.null(agegroup)) {
-    data <- data[data$`Age Group @ Testing` %in% date, ]
+    data <- data[data$`Age Group @ Testing` %in% agegroup, ]
   }
 
   if (!is.null(gender)) {

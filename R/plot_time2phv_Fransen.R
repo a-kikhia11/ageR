@@ -33,7 +33,7 @@ plot_time2phv_Fransen <- function(data, athlete = NULL, date = NULL, agegroup = 
   }
 
   if (!is.null(agegroup)) {
-    data <- data[data$`Age Group @ Testing` %in% date, ]
+    data <- data[data$`Age Group @ Testing` %in% agegroup, ]
   }
 
   datos <- data %>%
