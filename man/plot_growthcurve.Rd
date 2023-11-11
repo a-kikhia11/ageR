@@ -29,7 +29,7 @@ Data for UK growth charts was obtained from the British 1990 growth reference. P
 Be aware, players from different populations to the one used on these growth charts may not be well represented.
 }
 \examples{
-plot_growthcurve(data_sample, "Athlete 08", UK, Male)
-plot_growthcurve(data_sample, "Athlete 17", US, Female)
+plot_growthcurve(data_sample, "Athlete 08", "UK", "Male")
+plot_growthcurve(data_sample, "Athlete 17", "US", "Female")
 
 }
