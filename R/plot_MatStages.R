@@ -1,6 +1,6 @@
 #' Adult Height vs Mirwald Maturity Offset in Years
 #'
-#' This function returns a scatterplot showing the % of Adult Height vs Mirwald Maturity Offset (in years).
+#' This function returns a scatterplot showing the percent of Adult Height vs Mirwald Maturity Offset (in years).
 #'
 #' @param data A data frame. Containing the raw data we wish to analyze.
 #' @param athlete A character vector. Names of athletes to include in the plot.

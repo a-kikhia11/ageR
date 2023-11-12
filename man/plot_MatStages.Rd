@@ -27,7 +27,7 @@ plot_MatStages(
 A plot (ggplot)
 }
 \description{
-This function returns a scatterplot showing the % of Adult Height vs Mirwald Maturity Offset (in years).
+This function returns a scatterplot showing the percent of Adult Height vs Mirwald Maturity Offset (in years).
 }
 \examples{
 plot_MatStages(data_sample)
