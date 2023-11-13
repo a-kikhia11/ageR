@@ -10,7 +10,7 @@
 #'
 #' @export
 #' @examples
-#' plot_MatStages(data_sample)
+#' plot_MatStages_Fransen(data_sample)
 #'
 
 plot_MatStages_Fransen <- function(data, athlete = NULL, date = NULL, agegroup = NULL) {
