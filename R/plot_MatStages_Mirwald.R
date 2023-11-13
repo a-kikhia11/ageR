@@ -14,7 +14,7 @@
 #' plot_MatStages(data_sample)
 #'
 
-plot_MatStages <- function(data, athlete = NULL, date = NULL, agegroup = NULL, gender = NULL) {
+plot_MatStages_Mirwald <- function(data, athlete = NULL, date = NULL, agegroup = NULL, gender = NULL) {
 
   data <- maturation_cm(data)
 
