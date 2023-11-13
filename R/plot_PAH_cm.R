@@ -40,7 +40,7 @@ plot_PAH_cm <- function(data, athlete = NULL, date = NULL, agegroup = NULL) {
     ggplot2::facet_wrap(~Gender, scales = "free_y") +
     ggplot2::scale_x_continuous(breaks = seq(0, 300, by = 5)) +
     ggplot2::ylab("") + ggplot2::xlab("\n Centimeters") +
-    ggplot2::ggtitle("\n Estimated Adult Height (CM) \n") +
+    ggplot2::ggtitle("\n Predicted Adult Height (CM) \n") +
     ggplot2::theme_light() +
     ggplot2::theme(axis.title.x = ggplot2::element_text(color = "grey", hjust = 1),
                    panel.grid.minor = ggplot2::element_blank(),

@@ -45,7 +45,7 @@ plot_PAH_ftin <- function(data, athlete = NULL, date = NULL, agegroup = NULL) {
     ggplot2::facet_wrap(~Gender, scales = "free_y") +
     ggplot2::scale_x_continuous(breaks = seq(0, 300, by = 5), labels = function(x) sapply(x, inches_to_feet)) +
     ggplot2::ylab("") + ggplot2::xlab("\n Feet & Inches") +
-    ggplot2::ggtitle("\n Estimated Adult Height (FT'IN\") \n") +
+    ggplot2::ggtitle("\n Predicted Adult Height (FT'IN\") \n") +
     ggplot2::theme_light() +
     ggplot2::theme(axis.title.x = ggplot2::element_text(color = "grey", hjust = 1),
                    panel.grid.minor = ggplot2::element_blank(),
