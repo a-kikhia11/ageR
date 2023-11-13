@@ -105,12 +105,14 @@ plot_growthcurve(data_sample, "Athlete 08", "UK", "Male")
 plot_growthcurve(data_sample, "Athlete 17", "US", "Female")
 ```
 
-Plot % Adult Height against Maturity Offset (maturity stages are further highlighted within the graph)
+Plot % Adult Height against Maturity Offset 
+(note the two options for calculating Maturity Offset, Mirwald and Fransen. Maturity stages are further highlighted within the graphs)
 
 ```
 library(ageR)
 
-plot_MatStages(data_sample)
+plot_MatStages_Mirwald(data_sample)
+plot_MatStages_Fransen(data_sample)
 ```
 
 
