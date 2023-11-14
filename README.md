@@ -72,7 +72,7 @@ maturation_in(data_sample)
 ### Plots:
 **{ageR}** provides several visualization options:
 
-Predicted Adult Height Plot (note the three options depending on centimeters, inches, or feet and inches)
+**Predicted Adult Height Plot** (note the three options depending on centimeters, inches, or feet and inches)
 
 ```
 library(ageR)
@@ -98,7 +98,7 @@ plot_PAH_ftin(data_sample)
 
 <img src="data-raw/images/plot_PAH_ftin.png" width="600" />
 
-Time to PHV Dumbell Plot (note the two options for calculating Time to PHV, Mirwald and Fransen)
+**Time to PHV Dumbell Plot** (note the two options for calculating Time to PHV, Mirwald and Fransen)
 
 ```
 library(ageR)
@@ -116,7 +116,7 @@ plot_time2phv_Fransen(data_sample)
 
 <img src="data-raw/images/plot_time2phv_Fransen.png" width="600" />
 
-Maturity Offset Plot (note the two options for calculating Maturity Offset, Mirwald and Fransen)
+**Maturity Offset Plot** (note the two options for calculating Maturity Offset, Mirwald and Fransen)
 
 ```
 library(ageR)
@@ -134,7 +134,7 @@ plot_MatOffset_Fransen(data_sample)
 
 <img src="data-raw/images/plot_MatOffset_Fransen.png" width="600" />
 
-Plot Current and Predicted Height of an Athlete against Normal Growth Curves (must specify the athlete, reference sample, and gender)
+**Plot Current and Predicted Height of an Athlete against Normal Growth Curves** (must specify the athlete, reference sample, and gender)
 
 ```
 library(ageR)
@@ -152,7 +152,7 @@ plot_growthcurve(data_sample, "Athlete 17", "US", "Female")
 
 <img src="data-raw/images/plot_growthcurveF.png" width="600" />
 
-Plot % Adult Height against Maturity Offset 
+**Plot % Adult Height against Maturity Offset**
 (note the two options for calculating Maturity Offset, Mirwald and Fransen. Maturity stages are further highlighted within the graphs)
 
 ```
