@@ -59,11 +59,15 @@ library(ageR)
 maturation_cm(data_sample)
 ```
 
+<img src="data-raw/images/maturation_cm.png" width="800" />
+
 ```
 library(ageR)
 
 maturation_in(data_sample)
 ```
+
+<img src="data-raw/images/maturation_in.png" width="800" />
 
 ### Plots:
 **{ageR}** provides several visualization options:
@@ -74,27 +78,61 @@ Predicted Adult Height Plot (note the three options depending on centimeters, in
 library(ageR)
 
 plot_PAH_cm(data_sample)
+```
+
+<img src="data-raw/images/plot_PAH_cm.png" width="600" />
+
+```
+library(ageR)
+
 plot_PAH_in(data_sample)
+```
+
+<img src="data-raw/images/plot_PAH_in.png" width="600" />
+
+```
+library(ageR)
+
 plot_PAH_ftin(data_sample)
 ```
+
+<img src="data-raw/images/plot_PAH_ftin.png" width="600" />
 
 Time to PHV Dumbell Plot (note the two options for calculating Time to PHV, Mirwald and Fransen)
 
 ```
 library(ageR)
 
-plot_time2phv_Fransen(data_sample)
 plot_time2phv_Mirwald(data_sample)
 ```
+
+<img src="data-raw/images/plot_time2phv_Mirwald.png" width="600" />
+
+```
+library(ageR)
+
+plot_time2phv_Fransen(data_sample)
+```
+
+<img src="data-raw/images/plot_time2phv_Fransen.png" width="600" />
 
 Maturity Offset Plot (note the two options for calculating Maturity Offset, Mirwald and Fransen)
 
 ```
 library(ageR)
 
-plot_MatOffset_Fransen(data_sample)
 plot_MatOffset_Mirwald(data_sample)
 ```
+
+<img src="data-raw/images/plot_MatOffset_Mirwald.png" width="600" />
+
+```
+library(ageR)
+
+plot_MatOffset_Fransen(data_sample)
+```
+
+<img src="data-raw/images/plot_MatOffset_Fransen.png" width="600" />
 
 Plot Current and Predicted Height of an Athlete against Normal Growth Curves (must specify the athlete, reference sample, and gender)
 
@@ -102,8 +140,17 @@ Plot Current and Predicted Height of an Athlete against Normal Growth Curves (mu
 library(ageR)
 
 plot_growthcurve(data_sample, "Athlete 08", "UK", "Male")
+```
+
+<img src="data-raw/images/plot_growthcurveM.png" width="600" />
+
+```
+library(ageR)
+
 plot_growthcurve(data_sample, "Athlete 17", "US", "Female")
 ```
+
+<img src="data-raw/images/plot_growthcurveF.png" width="600" />
 
 Plot % Adult Height against Maturity Offset 
 (note the two options for calculating Maturity Offset, Mirwald and Fransen. Maturity stages are further highlighted within the graphs)
@@ -112,20 +159,28 @@ Plot % Adult Height against Maturity Offset
 library(ageR)
 
 plot_MatStages_Mirwald(data_sample)
+```
+
+<img src="data-raw/images/plot_MatStages_Mirwald.png" width="600" />
+
+```
+library(ageR)
+
 plot_MatStages_Fransen(data_sample)
 ```
 
+<img src="data-raw/images/plot_MatStages_Fransen.png" width="600" />
 
 ## Considerations
 
-
+Users should be aware of the validity and reliability of non-invasive measures to better interpret results (4). Furthermore, these methods have been validated within specific populations, and professionals using it with athletes from different countries and ethnicities should pick the correct reference population where possible and be cautious when interpreting results.
 
 ## References
 
 **1.** Cumming SP, Lloyd RS, Oliver JL, Eisennnann JC, Malina RM. Bio-banding in sport: Applications to Competition, talent identification, and strength and conditioning of youth athletes. Strength and Conditioning Journal. 2017;39(2):34–47.
-**2.** Malina RM, Rogol AD, Cumming SP, Coelho-E-Silva MJ, Figueiredo AJ. Biological maturaGon of youth athletes: assessment and implicaGons. BriGsh Journal of Sports Medicine. 2015;49:852-859.
-**3.** Towlson C, Salter J, Ade J, Enright K, Harper L, Page R, Malone J. Maturity-associated consideraGons for training load, injury risk, and physical performance within youth soccer: One size does not fit all. Journal of Sport and Health Science. 2020.
-**4.** Salter J, Cumming S, Hughes JD, De Ste Croix M. EsGmaGng somaGc maturity in adolescent soccer players: Methodological comparisons. InternaGonal Journal of Sports Science & Coaching. 2021;17(1):11–17.
-**5.** Khamis HJ, Roche AF. PredicGng adult stature without using skeletal age - The Khamis-Roche method. Pediatrics. 1994;94(4):504–507. (See erratum in Pediatrics 1995;95:457.)
-**6.** Fransen J, Bush S, Woodcock S, Novak A, Deprez D, Baxter-Jones ADG, Vaeyens R, Lenoir M. Improving the predicGon of maturity from anthropometric variables using a maturity ratio. Pediatr Exerc Sci. 2018;30(2):296–307.
+**2.** Malina RM, Rogol AD, Cumming SP, Coelho-E-Silva MJ, Figueiredo AJ. Biological maturatioon of youth athletes: assessment and implications. British Journal of Sports Medicine. 2015;49:852-859.
+**3.** Towlson C, Salter J, Ade J, Enright K, Harper L, Page R, Malone J. Maturity-associated considerations for training load, injury risk, and physical performance within youth soccer: One size does not fit all. Journal of Sport and Health Science. 2020.
+**4.** Salter J, Cumming S, Hughes JD, De Ste Croix M. Estimating somatic maturity in adolescent soccer players: Methodological comparisons. InternaGonal Journal of Sports Science & Coaching. 2021;17(1):11–17.
+**5.** Khamis HJ, Roche AF. Predicting adult stature without using skeletal age - The Khamis-Roche method. Pediatrics. 1994;94(4):504–507. (See erratum in Pediatrics 1995;95:457.)
+**6.** Fransen J, Bush S, Woodcock S, Novak A, Deprez D, Baxter-Jones ADG, Vaeyens R, Lenoir M. Improving the prediction of maturity from anthropometric variables using a maturity ratio. Pediatr Exerc Sci. 2018;30(2):296–307.
 **7.** Mirwald R.L., Baxter-Jones A.D.G., Bailey D.A., & Beunen, G.P. An assessment of maturity from anthropometric measurements. Medicine and Science Sports Exercise. 2002;34(4):689–694.
