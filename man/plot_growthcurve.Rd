@@ -19,12 +19,12 @@ plot_growthcurve(data, athlete, reference, gender)
 A plot `(ggplot)`
 }
 \description{
-This function returns a ggplot object showing the  *current*  and  *predicted height*  vs  *US*  or  *UK*  normal male growth charts.
+This function returns a ggplot object showing the *current* and *predicted height* vs *US* or *UK* normal male growth charts.
 }
 \details{
 Data for US growth charts was obtained from the National Center for Health Statistics. Please visit \url{https://www.cdc.gov/growthcharts/percentile_data_files.htm} to learn more.
 
-Data for UK growth charts was obtained from the British 1990 growth reference. Please visit \url{https://www.healthforallchildren.com/shop-base/software/lmsgrowth/} and/or refer to the  *sitar*  package to learn more.
+Data for UK growth charts was obtained from the British 1990 growth reference. Please visit \url{https://www.healthforallchildren.com/shop-base/software/lmsgrowth/} and/or refer to the *sitar* package to learn more.
 
 Be aware, players from different populations to the one used on these growth charts may not be well represented.
 }
