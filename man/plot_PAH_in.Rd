@@ -20,7 +20,7 @@ A plot `(ggplot)`
 }
 \description{
 This function returns a ggplot object showing the predicted adult height in inches for each athlete in the dataset. Can be further filtered by athlete name, date, and age.
-For the same plot in centimeters use **`plot_PAH_cm()`** and for feet and inches use **`plot_PAH_ftin()`**
+For the same plot in centimeters use \bold{`plot_PAH_cm()`} and for feet and inches use \bold{`plot_PAH_ftin()`}
 }
 \examples{
 plot_PAH_in(data_sample)
