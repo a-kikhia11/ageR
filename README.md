@@ -177,10 +177,16 @@ Users should be aware of the validity and reliability of non-invasive measures t
 
 ## References
 
-**1.** Cumming SP, Lloyd RS, Oliver JL, Eisennnann JC, Malina RM. Bio-banding in sport: Applications to Competition, talent identification, and strength and conditioning of youth athletes. Strength and Conditioning Journal. 2017;39(2):34–47.
-**2.** Malina RM, Rogol AD, Cumming SP, Coelho-E-Silva MJ, Figueiredo AJ. Biological maturatioon of youth athletes: assessment and implications. British Journal of Sports Medicine. 2015;49:852-859.
-**3.** Towlson C, Salter J, Ade J, Enright K, Harper L, Page R, Malone J. Maturity-associated considerations for training load, injury risk, and physical performance within youth soccer: One size does not fit all. Journal of Sport and Health Science. 2020.
-**4.** Salter J, Cumming S, Hughes JD, De Ste Croix M. Estimating somatic maturity in adolescent soccer players: Methodological comparisons. InternaGonal Journal of Sports Science & Coaching. 2021;17(1):11–17.
-**5.** Khamis HJ, Roche AF. Predicting adult stature without using skeletal age - The Khamis-Roche method. Pediatrics. 1994;94(4):504–507. (See erratum in Pediatrics 1995;95:457.)
-**6.** Fransen J, Bush S, Woodcock S, Novak A, Deprez D, Baxter-Jones ADG, Vaeyens R, Lenoir M. Improving the prediction of maturity from anthropometric variables using a maturity ratio. Pediatr Exerc Sci. 2018;30(2):296–307.
-**7.** Mirwald R.L., Baxter-Jones A.D.G., Bailey D.A., & Beunen, G.P. An assessment of maturity from anthropometric measurements. Medicine and Science Sports Exercise. 2002;34(4):689–694.
+**1.** Cumming SP, Lloyd RS, Oliver JL, Eisennnann JC, Malina RM. Bio-banding in sport: Applications to Competition, talent identification, and         strength and conditioning of youth athletes. Strength and Conditioning Journal. 2017;39(2):34–47.
+
+**2.** Malina RM, Rogol AD, Cumming SP, Coelho-E-Silva MJ, Figueiredo AJ. Biological maturatioon of youth athletes: assessment and implications.        British Journal of Sports Medicine. 2015;49:852-859.
+
+**3.** Towlson C, Salter J, Ade J, Enright K, Harper L, Page R, Malone J. Maturity-associated considerations for training load, injury risk, and        physical performance within youth soccer: One size does not fit all. Journal of Sport and Health Science. 2020.
+
+**4.** Salter J, Cumming S, Hughes JD, De Ste Croix M. Estimating somatic maturity in adolescent soccer players: Methodological comparisons.            InternaGonal Journal of Sports Science & Coaching. 2021;17(1):11–17.
+
+**5.** Khamis HJ, Roche AF. Predicting adult stature without using skeletal age - The Khamis-Roche method. Pediatrics. 1994;94(4):504–507. (See         erratum in Pediatrics 1995;95:457.)
+
+**6.** Fransen J, Bush S, Woodcock S, Novak A, Deprez D, Baxter-Jones ADG, Vaeyens R, Lenoir M. Improving the prediction of maturity from               anthropometric variables using a maturity ratio. Pediatr Exerc Sci. 2018;30(2):296–307.
+
+**7.** Mirwald R.L., Baxter-Jones A.D.G., Bailey D.A., & Beunen, G.P. An assessment of maturity from anthropometric measurements. Medicine and          Science Sports Exercise. 2002;34(4):689–694.
