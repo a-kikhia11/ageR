@@ -2,11 +2,11 @@
 #' Maturation and Bio-banding Metrics (cm)
 #'
 #' This function returns a dataframe with computed growth and maturation metrics in centimeters (cm) calculated from the imported data. See references for further details about the methodology behind each metric.
-#' For the same calculations in inches (in) see `maturation_in()`
+#' For the same calculations in inches (in) see \code{\bold{maturation_in()}}
 #'
 #' @param data A data frame. See data_sample for formatting reference.
 #' @returns A data frame with the following columns:
-#' \describe{
+#' \itemize{
 #'          \item{`Player Name`}{A chracter string. The name of the athlete}
 #'          \item{`Age Group @ Testing`}{A chracter string. Athletes Age Group at the time of testing}
 #'          \item{`Gender`}{A character String. The gender of the athlete}
@@ -25,7 +25,7 @@
 #'          \item{`Fransen MO (years)`}{Difference between their current age and their estimated age at PHV, espressed in years, using the Fransen Method}
 #'          \item{`Age @ PHV (Fransen)`}{The estimated age of the player at the time of Peak Height Velocity. Calculated using the Fransen equation. See references for further details}
 #'          \item{`Bio-Band`}{Categries for bio-banding based on the work from Cumming et al, 2017. See references for further details}
-#'          }
+#'    }
 #'
 #' @references
 #'     - Khamis, H. J., & Roche, A. F, (1994). Predicting adult height without using skeletal age: The Khamis-Roche method. Pediatrics, 94, 504–507

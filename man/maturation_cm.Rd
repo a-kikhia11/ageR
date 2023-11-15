@@ -14,7 +14,7 @@ maturation_cm(data)
 }
 \description{
 This function returns a dataframe with computed growth and maturation metrics in centimeters (cm) calculated from the imported data. See references for further details about the methodology behind each metric.
-For the same calculations in inches (in) see `maturation_in()`
+For the same calculations in inches (in) see \code{\bold{maturation_in()}}
 }
 \examples{
 maturation_cm(data_sample)
