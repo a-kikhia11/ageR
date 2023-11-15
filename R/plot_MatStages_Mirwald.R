@@ -7,7 +7,7 @@
 #' @param date A character vector. Dates to filter the data (in yyyy-mm-dd).
 #' @param agegroup A character vector. Age Group of athletes at time of testing.
 #' @param gender A character vector. Gender of athletes to include in the plot (default to include ALL athletes)
-#' @return A plot (ggplot)
+#' @return A plot (\code{ggplot})
 #'
 #' @export
 #' @examples

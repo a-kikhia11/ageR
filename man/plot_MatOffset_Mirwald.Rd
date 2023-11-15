@@ -24,7 +24,7 @@ plot_MatOffset_Mirwald(
 \item{gender}{A character vector. Gender of athletes to include in the plot (default to include ALL athletes)}
 }
 \value{
-A lollipop plot `(ggplot)`
+A lollipop plot (\code{ggplot})
 }
 \description{
 This function returns a lollipop ggplot object showing the offset in years from current age to estimated age at PHV for each athlete in the dataset using the Mirwald calculation method. This function can be filtered by athlete(s), date, and age.
