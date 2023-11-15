@@ -4,7 +4,7 @@
 #'
 #' Data for US growth charts was obtained from the National Center for Health Statistics. Please visit \url{https://www.cdc.gov/growthcharts/percentile_data_files.htm} to learn more.
 #'
-#' Data for UK growth charts was obtained from the British 1990 growth reference. Please visit \url{https://www.healthforallchildren.com/shop-base/software/lmsgrowth/} and/or refer to the \code{sitar} package to learn more.
+#' Data for UK growth charts was obtained from the British 1990 growth reference. Please visit \url{https://www.healthforallchildren.com/shop-base/software/lmsgrowth/} and/or refer to the \code{\bold{sitar}} package to learn more.
 #'
 #' Be aware, players from different populations to the one used on these growth charts may not be well represented.
 #'
@@ -14,7 +14,7 @@
 #' @param athlete A character string with the name of the athlete we wish to plot.
 #' @param reference A character string. Choose US (CDC) or UK (UK90) growth references.
 #' @param gender A character vector. Gender of athletes to include in the plot (default to include ALL athletes)
-#' @return A plot (\code{ggplot})
+#' @return A plot (\code{\bold{ggplot}})
 #'
 #' @export
 #' @examples
