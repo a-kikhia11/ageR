@@ -3,24 +3,24 @@
 \docType{data}
 \name{UK90_curves}
 \alias{UK90_curves}
-\title{Data from growth charts}
+\title{Data From UK1990 Growth Charts}
 \format{
 Data frame with 14 variables and 314 observations:
 \describe{
-   \item{Gender}{A character string. Refers to Male or Female.}
-   \item{Age}{Age in years and months}
-   \item{L (Power)}{Power in the Box-Cox transformation}
-   \item{M (Median)}{Median}
-   \item{S (CV)}{Generalized Coeficient of Variation}
-   \item{P3}{Data under percentile 3}
-   \item{P5}{Data under percentile 5}
-   \item{P10}{Data under percentile 10}
-   \item{P25}{Data under percentile 25}
-   \item{P50}{Data under percentile 50}
-   \item{P75}{Data under percentile 75}
-   \item{P90}{Data under percentile 90}
-   \item{P95}{Data under percentile 95}
-   \item{P97}{Data under percentile 97}
+   \item{\bold{Gender}}{A character string. Refers to Male or Female.}
+   \item{\bold{Age}}{Age in years and months}
+   \item{\bold{L (Power)}}{Power in the Box-Cox transformation}
+   \item{\bold{M (Median)}}{Median}
+   \item{\bold{S (CV)}}{Generalized Coeficient of Variation}
+   \item{\bold{P3}}{Data under percentile 3}
+   \item{\bold{P5}}{Data under percentile 5}
+   \item{\bold{P10}}{Data under percentile 10}
+   \item{\bold{P25}}{Data under percentile 25}
+   \item{\bold{P50}}{Data under percentile 50}
+   \item{\bold{P75}}{Data under percentile 75}
+   \item{\bold{P90}}{Data under percentile 90}
+   \item{\bold{P95}}{Data under percentile 95}
+   \item{\bold{P97}}{Data under percentile 97}
 
 }
 }
@@ -28,7 +28,7 @@ Data frame with 14 variables and 314 observations:
 UK90_curves
 }
 \description{
-Data from growth charts
+Data From UK1990 Growth Charts
 }
 \details{
 A data frame containing information for growth charts from the British 1990 reference data. Visit \url{https://www.healthforallchildren.com/shop-base/software/lmsgrowth/} for more details and or refer to the sitar package.
