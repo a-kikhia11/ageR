@@ -6,26 +6,26 @@
 #' @param data A data frame. See data_sample for formatting reference.
 #' @format A data frame returning 20 variables:
 #' \describe{
-#'          \item{`Player Name`}{A chracter string. The name of the athlete}
-#'          \item{`Age Group @ Testing`}{A chracter string. Athletes Age Group at the time of testing}
-#'          \item{`Gender`}{A character String. The gender of the athlete}
-#'          \item{`Testing Date`}{A date. The data collection date for each athlete}
-#'          \item{`Birth Year`}{The year of birth for every athlete}
-#'          \item{`Quarter`}{The yearly quarter in which athletes were born}
-#'          \item{`Age`}{The age of the athlete in years}
-#'          \item{`Height (IN)`}{The height in inches for each athlete at the time of testing}
-#'          \item{`Height (FT'IN")`}{The height in feet and inches for each athlete at the time of testing}
-#'          \item{`Estimated Adult Height (IN)`}{The estimated adult height in inches of the athlete using the Khamis-Roche method. See references for further details}
-#'          \item{`Estimated Adult Height (FT'IN")`}{The estimated adult height in feet and inches of the athlete using the Khamis-Roche method. See references for further details}
-#'          \item{`% Adult Height`}{Their current height expressed as %, compared to their predicted adult height}
-#'          \item{`Z-Score`}{Estimated biological maturity status expressed as a z-score, using the percentage of adult stature attained at observation and age-specific means and standard deviations followed longitudinally in the Berkeley Growth Study. See references for further details}
-#'          \item{`Maturity Status (%AH)`}{A z-score of -0.5 to +0.5 was used to define average maturity status; a z-score greater than +0.5 defined early while a z-score below -0.5 defined late status. See references for further details}
-#'          \item{`Remaining Growth (IN)`}{The difference between their predicted adult height and current height, in inches}
-#'          \item{`Mirwald MO (years)`}{Difference between their current age and their estimated age at PHV, espressed in years, using the Mirwald Method}
-#'          \item{`Age @ PHV (Mirwald)`}{The estimated age of the player at the time of Peak Height Velocity. Calculated using the Mirwald equation. See references for further details}
-#'          \item{`Fransen MO (years)`}{Difference between their current age and their estimated age at PHV, espressed in years, using the Fransen Method}
-#'          \item{`Age @ PHV (Fransen)`}{The estimated age of the player at the time of Peak Height Velocity. Calculated using the Fransen equation. See references for further details}
-#'          \item{`Bio-Band`}{Categries for bio-banding based on the work from Cumming et al, 2017. See references for further details}
+#'          \item{\bold{Player Name}}{A chracter string. The name of the athlete}
+#'          \item{\bold{Age Group @@ Testing}}{A chracter string. Athletes Age Group at the time of testing}
+#'          \item{\bold{Gender}}{A character String. The gender of the athlete}
+#'          \item{\bold{Testing Date}}{A date. The data collection date for each athlete}
+#'          \item{\bold{Birth Year}}{The year of birth for every athlete}
+#'          \item{\bold{Quarter}}{The yearly quarter in which athletes were born}
+#'          \item{\bold{Age}}{The age of the athlete in years}
+#'          \item{\bold{Height (IN)}}{The height in inches for each athlete at the time of testing}
+#'          \item{\bold{Height (FT'IN")}}{The height in feet and inches for each athlete at the time of testing}
+#'          \item{\bold{Estimated Adult Height (IN)}}{The estimated adult height in inches of the athlete using the Khamis-Roche method. See references for further details}
+#'          \item{\bold{Estimated Adult Height (FT'IN")}}{The estimated adult height in feet and inches of the athlete using the Khamis-Roche method. See references for further details}
+#'          \item{\bold{\% Adult Height}}{Their current height expressed as \%, compared to their predicted adult height}
+#'          \item{\bold{Z-Score}}{Estimated biological maturity status expressed as a z-score, using the percentage of adult stature attained at observation and age-specific means and standard deviations followed longitudinally in the Berkeley Growth Study. See references for further details}
+#'          \item{\bold{Maturity Status (\%AH)}}{A z-score of -0.5 to +0.5 was used to define average maturity status; a z-score greater than +0.5 defined early while a z-score below -0.5 defined late status. See references for further details}
+#'          \item{\bold{Remaining Growth (IN)}}{The difference between their predicted adult height and current height, in inches}
+#'          \item{\bold{Mirwald MO (years)}}{Difference between their current age and their estimated age at PHV, espressed in years, using the Mirwald Method}
+#'          \item{\bold{Age @@ PHV (Mirwald)}}{The estimated age of the player at the time of Peak Height Velocity. Calculated using the Mirwald equation. See references for further details}
+#'          \item{\bold{Fransen MO (years)}}{Difference between their current age and their estimated age at PHV, espressed in years, using the Fransen Method}
+#'          \item{\bold{Age @@ PHV (Fransen)}}{The estimated age of the player at the time of Peak Height Velocity. Calculated using the Fransen equation. See references for further details}
+#'          \item{\bold{Bio-Band}}{Categries for bio-banding based on the work from Cumming et al, 2017. See references for further details}
 #'}
 #' @references
 #'     - Khamis, H. J., & Roche, A. F, (1994). Predicting adult height without using skeletal age: The Khamis-Roche method. Pediatrics, 94, 504–507
