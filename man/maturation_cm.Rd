@@ -2,15 +2,15 @@
 % Please edit documentation in R/maturation_cm.R
 \name{maturation_cm}
 \alias{maturation_cm}
-\title{Maturation and Bio-banding Metrics (cm)}
+\title{Growth and Maturation Metrics (cm)}
+\format{
+
+}
 \usage{
 maturation_cm(data)
 }
 \arguments{
 \item{data}{A data frame. See data_sample for formatting reference.}
-}
-\value{
-
 }
 \description{
 This function returns a dataframe with computed growth and maturation metrics in centimeters (cm) calculated from the imported data. See references for further details about the methodology behind each metric.

@@ -16,7 +16,7 @@ plot_time2phv_Fransen(data, athlete = NULL, date = NULL, agegroup = NULL)
 \item{agegroup}{A character vector. Age Group of athletes at time of testing.}
 }
 \value{
-A dumbbell plot (\code{ggplot})
+A dumbbell plot (\code{\bold{ggplot}})
 }
 \description{
 This function returns a dumbbell plot showing the difference (in years) between current age and estimated age at PHV for each athlete in the dataset using the Fransen Maturity Offset method. Can be further filtered by athlete, age, and date.

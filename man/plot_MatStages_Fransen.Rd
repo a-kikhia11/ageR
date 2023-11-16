@@ -16,7 +16,7 @@ plot_MatStages_Fransen(data, athlete = NULL, date = NULL, agegroup = NULL)
 \item{agegroup}{A character vector. Age Group of athletes at time of testing.}
 }
 \value{
-A plot (\code{ggplot})
+A plot (\code{\bold{ggplot}})
 }
 \description{
 This function returns a scatterplot showing the percent of Adult Height vs Fransen Maturity Offset (in years).

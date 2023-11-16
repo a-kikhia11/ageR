@@ -24,7 +24,7 @@ plot_MatStages_Mirwald(
 \item{gender}{A character vector. Gender of athletes to include in the plot (default to include ALL athletes)}
 }
 \value{
-A plot (\code{ggplot})
+A plot (\code{\bold{ggplot}})
 }
 \description{
 This function returns a scatterplot showing the percent of Adult Height vs Mirwald Maturity Offset (in years).

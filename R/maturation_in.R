@@ -1,11 +1,10 @@
-
-#' Maturation and Bio-banding Metrics (in)
+#' Growth and Maturation Metrics (in)
 #'
 #' This function returns a dataframe with computed growth and maturation metrics in inches (in) calculated from the imported data. See references for further details about the methodology behind each metric.
 #' For the same calculations in centimeters (cm) use \code{\bold{maturation_cm()}}
 #'
 #' @param data A data frame. See data_sample for formatting reference.
-#' @format A data frame with the following columns:
+#' @format A data frame returning 20 variables:
 #' \describe{
 #'          \item{`Player Name`}{A chracter string. The name of the athlete}
 #'          \item{`Age Group @ Testing`}{A chracter string. Athletes Age Group at the time of testing}
@@ -27,14 +26,18 @@
 #'          \item{`Fransen MO (years)`}{Difference between their current age and their estimated age at PHV, espressed in years, using the Fransen Method}
 #'          \item{`Age @ PHV (Fransen)`}{The estimated age of the player at the time of Peak Height Velocity. Calculated using the Fransen equation. See references for further details}
 #'          \item{`Bio-Band`}{Categries for bio-banding based on the work from Cumming et al, 2017. See references for further details}
-#'    }
-#'
+#'}
 #' @references
 #'     - Khamis, H. J., & Roche, A. F, (1994). Predicting adult height without using skeletal age: The Khamis-Roche method. Pediatrics, 94, 504–507
+#'
 #'     - Sean P. Cumming, Rhodri S. Lloyd, John L. Oliver, Joey C. Eisenmann & Robert M. Malina, (2017). Bio-banding in Sport: Applications to competition, talent identification and strength and conditioning of youth athletes, National Strength and Conditioning Association, vol.39, 2
+#'
 #'     - Mirwald, R.L., Baxter-Jones, A.D.G., Bailey, D.A., & Beunen, G.P., (2002). An assessment of maturity from anthropometric measurements. Medicine and Science Sports Exercise, 34,4, pp. 689–694.
+#'
 #'     - Johnson DM, Williams S, Bradley B, Sayer S, Fisher JM. Growing pains : Maturity associated variation in injury risk in academy football. Eur J Sport Sci . 2019:1–9.
+#'
 #'     - Fransen, J., Bush, S., Woodcock, S., Novak, A., Deprez, D., Baxter-Jones, A. D. G., Vaeyens, R., & Lenoir, M. (2018). Improving the Prediction of Maturity From Anthropometric Variables Using a Maturity Ratio. Pediatric exercise science, 30(2), 296–307.
+#'
 #'     - Hill, M., Scott, S., Malina, R. M., McGee, D., & Cumming, S. P. (2020). Relative age and maturation selection biases in academy football. Journal of sports sciences, 38(11-12), 1359–1367.
 #'
 #' @export
