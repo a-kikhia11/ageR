@@ -23,11 +23,11 @@ plot_MatOffset_Fransen <- function(data, athlete = NULL, date = NULL, agegroup =
   data <- data[data$Gender == "Male", ]
 
   if (!is.null(athlete)) {
-    data <- data[data1$`Player Name` %in% athlete, ]
+    data <- data[data$`Player Name` %in% athlete, ]
   }
 
   if (!is.null(date)) {
-    data <- data[data1$`Testing Date` %in% date, ]
+    data <- data[data$`Testing Date` %in% date, ]
   }
 
   if (!is.null(agegroup)) {
