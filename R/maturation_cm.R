@@ -45,7 +45,7 @@
 
 maturation_cm <- function(data) {
 
-  final_table <- data %>%
+  final_table <- CPFC %>%
     dplyr::mutate(Age = lubridate::time_length(difftime(as.Date(`Testing Date`), as.Date(`DOB`)), "years")) %>%
     dplyr::mutate(`Rounded Age` = round(Age / 0.5) * 0.5) %>%
     dplyr::mutate(`Testing Date` = as.Date(`Testing Date`)) %>%
@@ -80,7 +80,9 @@ maturation_cm <- function(data) {
     dplyr::mutate(`Mirwald MO (years)` = ifelse(Gender == "Male", round(-9.236 + (0.0002708 * (`Leg Length * Sitting Height`)) + (-0.001663 * `Age * Leg Length`) + (0.007216 * `Age * Sitting Height`) + (0.02292 * `W-H Ratio`),2), round(-9.376 + (0.0001882 * (`Leg Length * Sitting Height`)) + (0.0022 * `Age * Leg Length`) + (0.005841 * `Age * Sitting Height`) + (-0.002658 * `Age * Weight`) + (0.07693 * `W-H Ratio`),2))) %>%
     dplyr::mutate(`Age @ PHV (Mirwald)` = round(Age - `Mirwald MO (years)`,2)) %>%
     dplyr::mutate(`Fransen MO (years)` = ifelse(Gender == "Male", round(Age - `Fransen APHV`,2), "0")) %>%
-    dplyr::mutate(`Age @ PHV (Fransen)` = ifelse(Gender == "Male", `Fransen APHV`, "0")) %>%
+    dplyr::mutate(`Age @ PHV (Fransen)` = ifelse(Gender == "Male", round(`Fransen APHV`,2), "0")) %>%
+    dplyr::mutate(Age = round(Age, 2),
+                  `Height (CM)` = round(`Height (CM)`, 2)) %>%
     dplyr::select(`Player Name`,`Age Group @ Testing`,Gender,`Testing Date`,`Birth Year`,Quarter,Age,`Height (CM)`,`Estimated Adult Height (CM)`,`% Adult Height`,`Z-Score`,`Maturity Status (%AH)`,`Remaining Growth (CM)`,`Mirwald MO (years)`,`Age @ PHV (Mirwald)`,`Fransen MO (years)`,`Age @ PHV (Fransen)`) %>%
     dplyr::mutate_at(vars(Age, `Height (CM)`, `Estimated Adult Height (CM)`, `% Adult Height`, `Z-Score`, `Remaining Growth (CM)`, `Mirwald MO (years)`, `Age @ PHV (Mirwald)`, `Fransen MO (years)`, `Age @ PHV (Fransen)`), as.numeric) %>%
     dplyr::mutate(`Bio-Band` = ifelse(`% Adult Height` < 85, "Pre-Pubertal",

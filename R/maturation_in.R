@@ -90,7 +90,9 @@ maturation_in <- function (data) {
     dplyr::mutate(`Mirwald MO (years)` = ifelse(Gender == "Male", round(-9.236 + (0.0002708 * (`Leg Length * Sitting Height`)) + (-0.001663 * `Age * Leg Length`) + (0.007216 * `Age * Sitting Height`) + (0.02292 * `W-H Ratio`),2), round(-9.376 + (0.0001882 * (`Leg Length * Sitting Height`)) + (0.0022 * `Age * Leg Length`) + (0.005841 * `Age * Sitting Height`) + (-0.002658 * `Age * Weight`) + (0.07693 * `W-H Ratio`),2))) %>%
     dplyr::mutate(`Age @ PHV (Mirwald)` = round(Age - `Mirwald MO (years)`,2)) %>%
     dplyr::mutate(`Fransen MO (years)` = ifelse(Gender == "Male", round(Age - `Fransen APHV`,2), "0")) %>%
-    dplyr::mutate(`Age @ PHV (Fransen)` = ifelse(Gender == "Male", `Fransen APHV`, "0")) %>%
+    dplyr::mutate(`Age @ PHV (Fransen)` = ifelse(Gender == "Male", round(`Fransen APHV`,2), "0")) %>%
+    dplyr::mutate(Age = round(Age, 2),
+                  `Height (IN)` = round(`Height (IN)`, 2)) %>%
     dplyr::select(`Player Name`,`Age Group @ Testing`,Gender,`Testing Date`,`Birth Year`,Quarter,Age,`Height (IN)`,`Height (FT'IN")`,`Estimated Adult Height (IN)`,`Estimated Adult Height (FT'IN")`,`% Adult Height`,`Z-Score`,`Maturity Status (%AH)`,`Remaining Growth (IN)`,`Mirwald MO (years)`,`Age @ PHV (Mirwald)`,`Fransen MO (years)`,`Age @ PHV (Fransen)`) %>%
     dplyr::mutate_at(vars(Age, `Height (IN)`, `Estimated Adult Height (IN)`, `% Adult Height`, `Z-Score`, `Remaining Growth (IN)`, `Mirwald MO (years)`, `Age @ PHV (Mirwald)`, `Fransen MO (years)`, `Age @ PHV (Fransen)`), as.numeric) %>%
     dplyr::mutate(`Bio-Band` = ifelse(`% Adult Height` < 85, "Pre-Pubertal",
