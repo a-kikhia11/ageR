@@ -38,6 +38,11 @@ plot_MatOffset_Mirwald <- function(data, athlete = NULL, date = NULL, agegroup =
     data <- data[data$Gender == gender, ]
   }
 
+  # Calculate x-max
+  max_value <- max(data$`Mirwald MO (years)`, na.rm = TRUE)
+  all_values_less_than_0 <- all(data$`Mirwald MO (years)` < 0)
+  right_labels <- ifelse(all_values_less_than_0, 0.2, max_value + 0.3)
+
   plot <- data %>%
     dplyr::select(`Player Name`, `Mirwald MO (years)`) %>%
     dplyr::mutate(Type = ifelse(`Mirwald MO (years)` > 0, "Past PHV", "Before PHV")) %>%
@@ -47,8 +52,10 @@ plot_MatOffset_Mirwald <- function(data, athlete = NULL, date = NULL, agegroup =
     ggplot2::geom_point(size = 3) +
     ggplot2::geom_text(ggplot2::aes(x = 0, y = -0.2, label = "PHV"), color = "grey", size = 3) +
     ggplot2::geom_text(ggplot2::aes(x = 0, y = -1, label = ""), color = "transparent") +
+    ggplot2::geom_text(fontface = "bold", size = 3, colour = "black", ggplot2::aes(x = right_labels, y = `Player Name`,
+                                                 label = ifelse(`Mirwald MO (years)` == 0, paste0(as.character(`Mirwald MO (years)`)),
+                                                                ifelse(`Mirwald MO (years)` > 0, paste0("",as.character(`Mirwald MO (years)`)), paste(as.character(`Mirwald MO (years)`)))))) +
     ggplot2::scale_color_manual(name="Time", values = c("Past PHV" = "deepskyblue3", "Before PHV" = "darkred")) +
-    ggplot2::xlim(-10,10) +
     ggplot2::ylab("Player Name(s) \n") + ggplot2::xlab("\n Years") +
     ggplot2::labs(title = "Mirwald Maturity Offset", subtitle = "Length of time (in years) from PHV \n") +
     ggplot2::theme_light() +

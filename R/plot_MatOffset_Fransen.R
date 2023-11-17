@@ -35,6 +35,11 @@ plot_MatOffset_Fransen <- function(data, athlete = NULL, date = NULL, agegroup =
     data <- data[data$`Age Group @ Testing` %in% agegroup, ]
   }
 
+  # Calculate x-max
+  max_value <- max(data$`Fransen MO (years)`, na.rm = TRUE)
+  all_values_less_than_0 <- all(data$`Fransen MO (years)` < 0)
+  right_labels <- ifelse(all_values_less_than_0, 0.2, max_value + 0.3)
+
   plot <- data %>%
     dplyr::select(`Player Name`, `Fransen MO (years)`) %>%
     dplyr::mutate(Type = ifelse(`Fransen MO (years)` > 0, "Past PHV", "Before PHV")) %>%
@@ -44,8 +49,10 @@ plot_MatOffset_Fransen <- function(data, athlete = NULL, date = NULL, agegroup =
     ggplot2::geom_point(size = 3) +
     ggplot2::geom_text(ggplot2::aes(x = 0, y = -0.2, label = "PHV"), color = "grey", size = 3) +
     ggplot2::geom_text(ggplot2::aes(x = 0, y = -1, label = ""), color = "transparent") +
+    ggplot2::geom_text(fontface = "bold", size = 3, colour = "black", ggplot2::aes(x = right_labels, y = `Player Name`,
+                                                                                   label = ifelse(`Fransen MO (years)` == 0, paste0(as.character(`Fransen MO (years)`)),
+                                                                                                  ifelse(`Fransen MO (years)` > 0, paste0("",as.character(`Fransen MO (years)`)), paste(as.character(`Fransen MO (years)`)))))) +
     ggplot2::scale_color_manual(name="Time", values = c("Past PHV" = "deepskyblue3", "Before PHV" = "darkred")) +
-    ggplot2::xlim(-10,10) +
     ggplot2::ylab("Player Name(s) \n") + ggplot2::xlab("\n Years") +
     ggplot2::labs(title = "Fransen Maturity Offset", subtitle = "Length of time (in years) from PHV \n") +
     ggplot2::theme_light() +
