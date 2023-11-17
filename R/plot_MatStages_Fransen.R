@@ -24,6 +24,7 @@ plot_MatStages_Fransen <- function(data, athlete = NULL, date = NULL, agegroup =
   }
 
   if (!is.null(date)) {
+    date <- as.Date(date)
     data <- data[data$`Testing Date` %in% date, ]
   }
 

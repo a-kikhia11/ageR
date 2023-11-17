@@ -23,6 +23,7 @@ plot_PAH_cm <- function(data, athlete = NULL, date = NULL, agegroup = NULL) {
   }
 
   if (!is.null(date)) {
+    date <- as.Date(date)
     data <- data[data$`Testing Date` %in% date, ]
   }
 
