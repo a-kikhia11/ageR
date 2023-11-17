@@ -34,20 +34,29 @@ plot_MatStages_Fransen <- function(data, athlete = NULL, date = NULL, agegroup =
 
   athlete_colors <- rainbow(length(unique(data$`Player Name`)))
 
-    max_value <- max(data$`Fransen MO (years)`, na.rm = TRUE)
+  max_value <- max(data$`Fransen MO (years)`, na.rm = TRUE)
   min_value <- min(data$`Fransen MO (years)`, na.rm = TRUE)
   pre_puberty_x <- ifelse(min_value <= -1, ((min_value - 0.65) - 1) / 2, -1)
   post_puberty_x <- ifelse(max_value >= 1.5, ((max_value + 0.3) + 1) / 2, 1)
+  if (min_value <= 0.3 && max_value >= -0.3) {
+    puberty_x <- 0
+  } else if (max_value < 0 && max_value >= -1) {
+    puberty_x <- max_value + 0.05
+  } else if (min_value > 0 && min_value <= 1) {
+    puberty_x <- ((min_value - 0.6) + 1) / 2
+  } else {
+    puberty_x <- 0
+  }
 
   plot <- data %>%
     ggplot2::ggplot(ggplot2::aes(x = `Fransen MO (years)`, y = `% Adult Height`, color = `Player Name`)) +
     ggplot2::annotate("rect", xmin = -Inf, xmax = Inf, ymin = 100, ymax = 102, fill = "black") +
     ggplot2::annotate("rect", xmin = -Inf, xmax = Inf, ymin = -Inf, ymax = 85, fill = "gray", alpha = 0.4) +
     ggplot2::annotate("rect", xmin = -Inf, xmax = Inf, ymin = 85, ymax = 96, fill = "gray", alpha = 0.6) +
-    ggplot2::annotate("rect", xmin = -Inf, xmax = Inf, ymin = 96, ymax = 100, fill = "gray", alpha = 0.8)
-    if (min_value <= 0.3 && max_value >= -0.3) {
+    ggplot2::annotate("rect", xmin = -Inf, xmax = Inf, ymin = 96, ymax = 100, fill = "gray", alpha = 0.8) +
+    if (any(data$`Fransen MO (years)` > -1 & data$`Fransen MO (years)` < 1)) {
       plot <- plot +
-        ggplot2::annotate("text", x = 0, y = 101, label = "Puberty", size = 3, color = "white")
+        ggplot2::annotate("text", x = puberty_x, y = 101, label = "Puberty", size = 3, color = "white")
     }
     if (min_value <= -1) {
       plot <- plot +
