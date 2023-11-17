@@ -18,23 +18,23 @@
 
 plot_MatOffset_Fransen <- function(data, athlete = NULL, date = NULL, agegroup = NULL) {
 
-  data1 <- maturation_cm(data)
+  data <- maturation_cm(data)
 
-  data1 <- data1[data1$Gender == "Male", ]
+  data <- data[data$Gender == "Male", ]
 
   if (!is.null(athlete)) {
-    data1 <- data1[data1$`Player Name` %in% athlete, ]
+    data <- data[data1$`Player Name` %in% athlete, ]
   }
 
   if (!is.null(date)) {
-    data1 <- data1[data1$`Testing Date` %in% date, ]
+    data <- data[data1$`Testing Date` %in% date, ]
   }
 
   if (!is.null(agegroup)) {
-    data1 <- data1[data1$`Age Group @ Testing` %in% agegroup, ]
+    data <- data[data$`Age Group @ Testing` %in% agegroup, ]
   }
 
-  plot <- data1 %>%
+  plot <- data %>%
     dplyr::select(`Player Name`, `Fransen MO (years)`) %>%
     dplyr::mutate(Type = ifelse(`Fransen MO (years)` > 0, "Past PHV", "Before PHV")) %>%
     ggplot2::ggplot(ggplot2::aes(x = `Fransen MO (years)`, y = reorder(`Player Name`, `Fransen MO (years)`), color = Type)) +
