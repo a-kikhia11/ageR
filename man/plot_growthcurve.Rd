@@ -4,7 +4,7 @@
 \alias{plot_growthcurve}
 \title{Height (current + predicted) vs reference growth curves}
 \usage{
-plot_growthcurve(data, athlete, reference, gender)
+plot_growthcurve(data, athlete, date, reference, gender)
 }
 \arguments{
 \item{data}{A data frame. The object containing the raw data we wish to analyze.}
