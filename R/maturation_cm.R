@@ -45,7 +45,7 @@
 
 maturation_cm <- function(data) {
 
-  final_table <- CPFC %>%
+  final_table <- data %>%
     dplyr::mutate(Age = lubridate::time_length(difftime(as.Date(`Testing Date`), as.Date(`DOB`)), "years")) %>%
     dplyr::mutate(`Rounded Age` = round(Age / 0.5) * 0.5) %>%
     dplyr::mutate(`Testing Date` = as.Date(`Testing Date`)) %>%
