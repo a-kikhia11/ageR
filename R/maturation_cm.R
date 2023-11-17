@@ -64,6 +64,7 @@ maturation_cm <- function(data) {
                   `Leg Length * Sitting Height` = `Leg Length (CM)` * `Sitting Height (CM)`,
                   `Age * Leg Length` = `Leg Length (CM)` * Age,
                   `Age * Sitting Height` = `Sitting Height (CM)` * Age,
+                  `Age * Weight` = `Weight (KG)` * Age,
                   `Fransen Ratio` = 6.986547255416 + (0.115802846632 * Age) + (0.001450825199 * (Age^2)) + (0.004518400406 * `Weight (KG)`) - (0.000034086447 * (`Weight (KG)`^2)) - (0.151951447289 * `Height (CM)`) + (0.000932836659 * (`Height (CM)`^2)) - (0.000001656585 * (`Height (CM)`^3)) + (0.032198263733 * `Leg Length (CM)`) - (0.000269025264 * (`Leg Length (CM)`^2)) - (0.000760897942 * (`Height (CM)` * Age)),
                   `Fransen APHV` = Age / `Fransen Ratio`) %>%
     dplyr::mutate(`Parent Mid Height (CM)` = round(((2.803 + (0.953 * `Mothers Height (CM)`)) + (2.316 + (0.955 * `Fathers Height (CM)`))) / 2, 2)) %>%
