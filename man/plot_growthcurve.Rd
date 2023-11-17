@@ -11,6 +11,8 @@ plot_growthcurve(data, athlete, date, reference, gender)
 
 \item{athlete}{A character string with the name of the athlete we wish to plot.}
 
+\item{date}{A character vector. Dates to filter the data (in yyyy-mm-dd).}
+
 \item{reference}{A character string. Choose US (CDC) or UK (UK90) growth references.}
 
 \item{gender}{A character vector. Gender of athletes to include in the plot (default to include ALL athletes)}
@@ -29,7 +31,7 @@ Data for UK growth charts was obtained from the British 1990 growth reference. P
 Be aware, players from different populations to the one used on these growth charts may not be well represented.
 }
 \examples{
-plot_growthcurve(data_sample, "Athlete 08", "UK", "Male")
-plot_growthcurve(data_sample, "Athlete 17", "US", "Female")
+plot_growthcurve(data_sample, "Athlete 08", "2020-07-01","UK", "Male")
+plot_growthcurve(data_sample, "Athlete 17", "2020-07-01","US", "Female")
 
 }

@@ -12,14 +12,15 @@
 #'
 #' @param data A data frame. The object containing the raw data we wish to analyze.
 #' @param athlete A character string with the name of the athlete we wish to plot.
+#' @param date A character vector. Dates to filter the data (in yyyy-mm-dd).
 #' @param reference A character string. Choose US (CDC) or UK (UK90) growth references.
 #' @param gender A character vector. Gender of athletes to include in the plot (default to include ALL athletes)
 #' @return A plot (\code{\bold{ggplot}})
 #'
 #' @export
 #' @examples
-#' plot_growthcurve(data_sample, "Athlete 08", "UK", "Male")
-#' plot_growthcurve(data_sample, "Athlete 17", "US", "Female")
+#' plot_growthcurve(data_sample, "Athlete 08", "2020-07-01","UK", "Male")
+#' plot_growthcurve(data_sample, "Athlete 17", "2020-07-01","US", "Female")
 #'
 
 plot_growthcurve <- function(data, athlete, date, reference, gender) {
