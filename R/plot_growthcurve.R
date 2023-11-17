@@ -22,7 +22,7 @@
 #' plot_growthcurve(data_sample, "Athlete 17", "US", "Female")
 #'
 
-plot_growthcurve <- function(data, athlete, reference, gender) {
+plot_growthcurve <- function(data, athlete, date, reference, gender) {
 
   data <- maturation_cm(data)
 
@@ -41,6 +41,11 @@ plot_growthcurve <- function(data, athlete, reference, gender) {
 
   if (missing(athlete) || is.null(athlete) || length(athlete) == 0) {
     stop("Invalid athlete parameter. Insert athlete name.")
+  }
+
+  if (!is.null(date)) {
+    date <- as.Date(date)
+    data <- data[data$`Testing Date` %in% date, ]
   }
 
   Subtitle <- if (reference == "UK") {
