@@ -1,6 +1,6 @@
 #' Height (current + predicted) vs reference growth curves
 #'
-#' This function returns a ggplot object showing the \bold{current} and \bold{predicted height} vs \bold{US} or \bold{UK} normal male growth charts.
+#' This function returns a ggplot object showing the \bold{current} and \bold{predicted height} vs \bold{US} or \bold{UK} normal growth charts. \bold{ALL parameters within the function MUST be occupied.}
 #'
 #' Data for US growth charts was obtained from the National Center for Health Statistics. Please visit \url{https://www.cdc.gov/growthcharts/percentile_data_files.htm} to learn more.
 #'
@@ -21,6 +21,7 @@
 #' @examples
 #' plot_growthcurve(data_sample, "Athlete 08", "2020-07-01","UK", "Male")
 #' plot_growthcurve(data_sample, "Athlete 17", "2020-07-01","US", "Female")
+#' plot_growthcurve(data_sample, athlete = c("Athlete 08", "Athlete 02"),"2020-07-01","UK","Male")
 #'
 
 plot_growthcurve <- function(data, athlete, date, reference, gender) {
@@ -41,10 +42,14 @@ plot_growthcurve <- function(data, athlete, date, reference, gender) {
   }
 
   if (missing(athlete) || is.null(athlete) || length(athlete) == 0) {
-    stop("Invalid athlete parameter. Insert athlete name.")
+    stop("Invalid athlete parameter. Insert Athlete Name.")
+  } else if (!is.null(athlete)) {
+    data <- data[data$`Player Name` %in% c(athlete), ]
   }
 
-  if (!is.null(date)) {
+  if (missing(date) || is.null(date) || length(date) == 0) {
+    stop("Invalid date parameter. Insert Testing Date.")
+  } else if (!is.null(date)) {
     date <- as.Date(date)
     data <- data[data$`Testing Date` %in% date, ]
   }
@@ -63,11 +68,12 @@ plot_growthcurve <- function(data, athlete, date, reference, gender) {
     }
   }
 
+
   curve <- curve_data %>%
     dplyr::select(Gender, Age, everything(), -`L (Power)`, -`M (Median)`, -`S (CV)`) %>%
     dplyr::filter(Gender == gender)
 
-  athlete <- data %>% dplyr::filter(`Player Name` %in% c(athlete))
+  athlete_colors <- rainbow(length(unique(data$`Player Name`)))
 
   plot <- ggplot2::ggplot(curve) +
     ggplot2::annotate("rect", xmin = 7.9, xmax = 12, ymin = 187, ymax = 216, fill = "white") +
@@ -88,12 +94,13 @@ plot_growthcurve <- function(data, athlete, date, reference, gender) {
     ggplot2::geom_ribbon(ggplot2::aes(ymin=P25, ymax=P75, x=Age), fill = "skyblue4") +
     ggplot2::geom_line(ggplot2::aes(y=P50, x=Age), colour = "gray", linetype = 2) +
     ggplot2::geom_vline(ggplot2::aes(xintercept = 20), color = "black") +
-    ggplot2::geom_curve(data = athlete, ggplot2::aes(x = Age, y = `Height (CM)`, xend = 16.5, yend = 135), color = "black", curvature = 0.2, linewidth = 0.5, linetype = 1) +
+    ggplot2::geom_curve(data = data, ggplot2::aes(x = Age, y = `Height (CM)`, xend = 16.5, yend = 135), color = "black", curvature = 0.2, linewidth = 0.5, linetype = 1) +
     ggplot2::annotate("text", x = 17, y = 125, label = "Current \n Height", color = "black", size = 3) +
-    ggplot2::geom_point(data = athlete, ggplot2::aes(Age, `Height (CM)`), color = "deeppink", size = 3) +
-    ggplot2::geom_point(data = athlete %>% dplyr::mutate(Age = 21), ggplot2::aes(Age, `Estimated Adult Height (CM)`), color = "deeppink", size = 3) +
-    ggplot2::geom_text(data = athlete %>% dplyr::mutate(Age = 21), ggplot2::aes(Age, `Estimated Adult Height (CM)`, label = `Estimated Adult Height (CM)`), color = "deeppink", size = 3, vjust = -1) +
-    ggplot2::geom_curve(data = athlete %>% dplyr::mutate(Age2 = 21), ggplot2::aes(x = Age, y = `Height (CM)`, xend = Age2, yend = `Estimated Adult Height (CM)`), color = "deeppink", curvature = -0.05, linewidth = 0.5, linetype = 1) +
+
+    ggplot2::geom_point(data = data, ggplot2::aes(Age, `Height (CM)`, color = `Player Name`), size = 3) +
+    ggplot2::geom_point(data = data %>% dplyr::mutate(Age = 21), ggplot2::aes(Age, `Estimated Adult Height (CM)`, color = `Player Name`), size = 3) +
+    ggplot2::geom_curve(data = data %>% dplyr::mutate(Age2 = 21), ggplot2::aes(x = Age, y = `Height (CM)`, xend = Age2, yend = `Estimated Adult Height (CM)`, color = `Player Name`), curvature = -0.05, linewidth = 0.5, linetype = 1) +
+    ggplot2::scale_color_manual(name = "Player Name", values = athlete_colors) +
     ggplot2::scale_x_continuous(breaks = seq(0, 20, by = 2.5)) +
     ggplot2::ylim(75, 220) +
     ggplot2::ylab("Height (CM) \n") + ggplot2::xlab("Age") +
@@ -105,7 +112,10 @@ plot_growthcurve <- function(data, athlete, date, reference, gender) {
           plot.caption = ggplot2::element_text(color = "lightblue"),
           panel.grid.minor = ggplot2::element_blank(),
           panel.grid.major = ggplot2::element_line(linetype = 2),
-          legend.title = ggplot2::element_blank())
+          legend.title = ggplot2::element_blank(),
+          legend.position = "bottom",
+          legend.box = "horizontal",
+          legend.margin = ggplot2::margin(t = 0, r = 0, b = 0, l = 0))
 
   plot
 

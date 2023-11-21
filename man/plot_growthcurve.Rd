@@ -21,7 +21,7 @@ plot_growthcurve(data, athlete, date, reference, gender)
 A plot (\code{\bold{ggplot}})
 }
 \description{
-This function returns a ggplot object showing the \bold{current} and \bold{predicted height} vs \bold{US} or \bold{UK} normal male growth charts.
+This function returns a ggplot object showing the \bold{current} and \bold{predicted height} vs \bold{US} or \bold{UK} normal growth charts. \bold{ALL parameters within the function MUST be occupied.}
 }
 \details{
 Data for US growth charts was obtained from the National Center for Health Statistics. Please visit \url{https://www.cdc.gov/growthcharts/percentile_data_files.htm} to learn more.
@@ -33,5 +33,6 @@ Be aware, players from different populations to the one used on these growth cha
 \examples{
 plot_growthcurve(data_sample, "Athlete 08", "2020-07-01","UK", "Male")
 plot_growthcurve(data_sample, "Athlete 17", "2020-07-01","US", "Female")
+plot_growthcurve(data_sample, athlete = c("Athlete 08", "Athlete 02"),"2020-07-01","UK","Male")
 
 }
