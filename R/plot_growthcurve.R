@@ -68,7 +68,6 @@ plot_growthcurve <- function(data, athlete, date, reference, gender) {
     }
   }
 
-
   curve <- curve_data %>%
     dplyr::select(Gender, Age, everything(), -`L (Power)`, -`M (Median)`, -`S (CV)`) %>%
     dplyr::filter(Gender == gender)
@@ -96,7 +95,6 @@ plot_growthcurve <- function(data, athlete, date, reference, gender) {
     ggplot2::geom_vline(ggplot2::aes(xintercept = 20), color = "black") +
     ggplot2::geom_curve(data = data, ggplot2::aes(x = Age, y = `Height (CM)`, xend = 16.5, yend = 135), color = "black", curvature = 0.2, linewidth = 0.5, linetype = 1) +
     ggplot2::annotate("text", x = 17, y = 125, label = "Current \n Height", color = "black", size = 3) +
-
     ggplot2::geom_point(data = data, ggplot2::aes(Age, `Height (CM)`, color = `Player Name`), size = 3) +
     ggplot2::geom_point(data = data %>% dplyr::mutate(Age = 21), ggplot2::aes(Age, `Estimated Adult Height (CM)`, color = `Player Name`), size = 3) +
     ggplot2::geom_curve(data = data %>% dplyr::mutate(Age2 = 21), ggplot2::aes(x = Age, y = `Height (CM)`, xend = Age2, yend = `Estimated Adult Height (CM)`, color = `Player Name`), curvature = -0.05, linewidth = 0.5, linetype = 1) +
@@ -116,7 +114,6 @@ plot_growthcurve <- function(data, athlete, date, reference, gender) {
           legend.position = "bottom",
           legend.box = "horizontal",
           legend.margin = ggplot2::margin(t = 0, r = 0, b = 0, l = 0))
-
   plot
 
 }
