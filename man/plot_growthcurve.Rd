@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot_growthcurve.R
 \name{plot_growthcurve}
 \alias{plot_growthcurve}
-\title{Height (current + predicted) vs reference growth curves}
+\title{Height (Current + Predicted) vs Reference Growth Curves}
 \usage{
 plot_growthcurve(data, athlete, date, reference, gender)
 }
@@ -33,6 +33,6 @@ Be aware, players from different populations to the one used on these growth cha
 \examples{
 plot_growthcurve(data_sample, "Athlete 08", "2020-07-01","UK", "Male")
 plot_growthcurve(data_sample, "Athlete 17", "2020-07-01","US", "Female")
-plot_growthcurve(data_sample, athlete = c("Athlete 08", "Athlete 02"),"2020-07-01","UK","Male")
+plot_growthcurve(data_sample, athlete = c("Athlete 02", "Athlete 08"),"2020-07-01","UK","Male")
 
 }

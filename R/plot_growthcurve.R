@@ -1,4 +1,4 @@
-#' Height (current + predicted) vs reference growth curves
+#' Height (Current + Predicted) vs Reference Growth Curves
 #'
 #' This function returns a ggplot object showing the \bold{current} and \bold{predicted height} vs \bold{US} or \bold{UK} normal growth charts. \bold{ALL parameters within the function MUST be occupied.}
 #'
@@ -21,7 +21,7 @@
 #' @examples
 #' plot_growthcurve(data_sample, "Athlete 08", "2020-07-01","UK", "Male")
 #' plot_growthcurve(data_sample, "Athlete 17", "2020-07-01","US", "Female")
-#' plot_growthcurve(data_sample, athlete = c("Athlete 08", "Athlete 02"),"2020-07-01","UK","Male")
+#' plot_growthcurve(data_sample, athlete = c("Athlete 02", "Athlete 08"),"2020-07-01","UK","Male")
 #'
 
 plot_growthcurve <- function(data, athlete, date, reference, gender) {
@@ -85,14 +85,14 @@ plot_growthcurve <- function(data, athlete, date, reference, gender) {
     ggplot2::annotate("text", x = 10, y = 198, label = "10-90 Percentiles", color = "black", size = 2) +
     ggplot2::annotate("rect", xmin = 8, xmax = 8.6, ymin = 190, ymax = 195, fill = "skyblue4") +
     ggplot2::annotate("text", x = 10, y = 193, label = "25-75 Percentiles", color = "black", size = 2) +
-    ggplot2::annotate("rect", xmin = 20, xmax = 22, ymin = max(curve$P3), ymax = max(curve$P97), fill = "black", alpha = .8) +
+    ggplot2::annotate("rect", xmin = 20, xmax = 22, ymin = max(curve$P3), ymax = max(curve$P97), fill = "black", alpha = .6) +
     ggplot2::annotate("text", x = 21.5, y = 75, label = "Adult Years", color = "black", size = 3) +
     ggplot2::geom_ribbon(ggplot2::aes(ymin=P3, ymax=P97, x=Age), fill = "skyblue1") +
     ggplot2::geom_ribbon(ggplot2::aes(ymin=P5, ymax=P95, x=Age), fill = "skyblue2") +
     ggplot2::geom_ribbon(ggplot2::aes(ymin=P10, ymax=P90, x=Age), fill = "skyblue3") +
     ggplot2::geom_ribbon(ggplot2::aes(ymin=P25, ymax=P75, x=Age), fill = "skyblue4") +
     ggplot2::geom_line(ggplot2::aes(y=P50, x=Age), colour = "gray", linetype = 2) +
-    ggplot2::geom_vline(ggplot2::aes(xintercept = 20), color = "black") +
+    ggplot2::geom_vline(ggplot2::aes(xintercept = 20), color = "black", alpha = .6) +
     ggplot2::geom_curve(data = data, ggplot2::aes(x = Age, y = `Height (CM)`, xend = 16.5, yend = 135), color = "black", curvature = 0.2, linewidth = 0.5, linetype = 1) +
     ggplot2::annotate("text", x = 17, y = 125, label = "Current \n Height", color = "black", size = 3) +
     ggplot2::geom_point(data = data, ggplot2::aes(Age, `Height (CM)`, color = `Player Name`), size = 3) +
