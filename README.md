@@ -1,5 +1,8 @@
+[![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
+[![Status](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+
 # {ageR}
-### Athlete Growth &amp; Maturation R Package
+### Athlete Growth &amp; Maturation
 
 ## Intro
 
@@ -175,6 +178,10 @@ plot_MatStages_Fransen(data_sample)
 
 Users should be aware of the validity and reliability of non-invasive measures to better interpret results (4). Furthermore, these methods have been validated within specific populations, and professionals using it with athletes from different countries and ethnicities should pick the correct reference population where possible and be cautious when interpreting results.
 
+## Acknowledgments
+
+This package was built and improved upon the foundations laid by Jose Fernandez and Jorge Arede's matuR package (8).
+
 ## References
 
 **1.** Cumming SP, Lloyd RS, Oliver JL, Eisennnann JC, Malina RM. Bio-banding in sport: Applications to Competition, talent identification, and         strength and conditioning of youth athletes. Strength and Conditioning Journal. 2017;39(2):34–47.
@@ -190,3 +197,14 @@ Users should be aware of the validity and reliability of non-invasive measures t
 **6.** Fransen J, Bush S, Woodcock S, Novak A, Deprez D, Baxter-Jones ADG, Vaeyens R, Lenoir M. Improving the prediction of maturity from               anthropometric variables using a maturity ratio. Pediatr Exerc Sci. 2018;30(2):296–307.
 
 **7.** Mirwald R.L., Baxter-Jones A.D.G., Bailey D.A., & Beunen, G.P. An assessment of maturity from anthropometric measurements. Medicine and          Science Sports Exercise. 2002;34(4):689–694.
+
+**8.** Jose Fernandez (2020). matuR: Athlete Maturation and Biobanding. R package version 0.0.0.9000. https://github.com/josedv82/matuR
+
+## Citing this package
+
+```
+To cite the package ‘ageR’ in publications, use:
+
+  Abdurrahman Kikhia (2023). ageR: Athlete Growth & Maturation. R package version 0.1.0.
+  https://github.com/a-kikhia11/ageR
+```
