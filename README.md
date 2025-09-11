@@ -200,6 +200,12 @@ This package was built and improved upon the foundations laid by Jose Fernandez 
 
 **8.** Jose Fernandez (2020). matuR: Athlete Maturation and Biobanding. R package version 0.0.0.9000. https://github.com/josedv82/matuR
 
+**9.** Neyzi, O., Bundak, R., Gökçay, G., Günöz, H., Furman, A., Darendeliler, F., & Baş, F. Reference Values for Weight, Height, Head                  Circumference, and Body Mass Index in Turkish Children. Journal of clinical research in pediatric endocrinology. 2015;7(4):80–293.
+
+**10.** Roelantes M, Hauspie R, Hoppenbrowers J. References for growth and pubertal development from birth to 21 years in Flanders, Belgium. Ann        Hum Biol 2009;36:680-694.
+
+**11.** Juliusson PB, Roelantes M, Nordal E, Furevik L, Eide GE, Moster D, Hauspie R, Bjerknes R. Growth references for 0-19 year old Norwegian         children for length/height, weight, body mass index and head circumference. Ann Hum Biol 2013;40:220-227.
+
 ## Citing this package
 
 ```

@@ -1,6 +1,6 @@
 #' Height (Current + Predicted) vs Reference Growth Curves
 #'
-#' This function returns a ggplot object showing the \bold{current} and \bold{predicted height} vs \bold{US} or \bold{UK} normal growth charts. \bold{ALL parameters within the function MUST be occupied.}
+#' This function returns a ggplot object showing the \bold{current} and \bold{predicted height} vs \bold{normal growth charts}. \bold{ALL parameters within the function MUST be occupied.}
 #'
 #' Data for US growth charts was obtained from the National Center for Health Statistics. Please visit \url{https://www.cdc.gov/growthcharts/percentile_data_files.htm} to learn more.
 #'
@@ -13,7 +13,7 @@
 #' @param data A data frame. The object containing the raw data we wish to analyze.
 #' @param athlete A character string with the name of the athlete we wish to plot.
 #' @param date A character vector. Dates to filter the data (in yyyy-mm-dd).
-#' @param reference A character string. Choose US (CDC) or UK (UK90) growth references.
+#' @param reference A character string. Choose US (CDC), UK (UK90), Turkey (TK), Belgium (BE), or Norway (NO) growth references.
 #' @param gender A character vector. Gender of athletes to include in the plot (default to include ALL athletes)
 #' @return A plot (\code{\bold{ggplot}})
 #'
@@ -32,6 +32,12 @@ plot_growthcurve <- function(data, athlete, date, reference, gender) {
     curve_data <- ageR::CDC_curves
   } else if (reference == "UK") {
     curve_data <- ageR::UK90_curves
+  } else if (reference == "BE") {
+    curve_data <- ageR::BE_curves
+  } else if (reference == "TK") {
+    curve_data <- ageR::TK_curves
+  } else if (reference == "NO") {
+    curve_data <- ageR::NO_curves
   } else {
     stop("Invalid reference parameter. Please use 'US' or 'UK'.")
   }
@@ -66,6 +72,30 @@ plot_growthcurve <- function(data, athlete, date, reference, gender) {
     } else {
       "vs. Standard Female Growth Curves: United States \n"
     }
+  } else if (reference == "BE") {
+    if (gender == "Male") {
+      "vs. Standard Male Growth Curves: Belgium \n"
+    } else {
+      "vs. Standard Female Growth Curves: Belgium \n"
+    }
+  } else if (reference == "TK") {
+    if (gender == "Male") {
+      "vs. Standard Male Growth Curves: Turkey \n"
+    } else {
+      "vs. Standard Female Growth Curves: Turkey \n"
+    }
+  } else if (reference == "NO") {
+    if (gender == "Male") {
+      "vs. Standard Male Growth Curves: Norway \n"
+    } else {
+      "vs. Standard Female Growth Curves: Norway \n"
+    }
+  }
+
+  Caption <- if (reference == "US") {
+    "For more information about growth charts visit https://www.cdc.gov/growthcharts/"
+  } else {
+    ""
   }
 
   curve <- curve_data %>%
@@ -102,7 +132,7 @@ plot_growthcurve <- function(data, athlete, date, reference, gender) {
     ggplot2::scale_x_continuous(breaks = seq(0, 20, by = 2.5)) +
     ggplot2::ylim(75, 220) +
     ggplot2::ylab("Height (CM) \n") + ggplot2::xlab("Age") +
-    ggplot2::labs(title = "Predicted Height (CM)", subtitle = Subtitle, caption = "For more information about growth charts visit https://www.cdc.gov/growthcharts/") +
+    ggplot2::labs(title = "Predicted Height (CM)", subtitle = Subtitle, caption = Caption) +
     ggplot2::theme_light() +
     ggplot2::theme(axis.title.x = ggplot2::element_text(color = "grey", hjust = 1),
           axis.title.y = ggplot2::element_text(color = "grey", hjust = 1),
