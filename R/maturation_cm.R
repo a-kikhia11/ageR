@@ -13,12 +13,18 @@
 #'          \item{\bold{Birth Year}}{The year of birth for every athlete}
 #'          \item{\bold{Quarter}}{The yearly quarter in which athletes were born}
 #'          \item{\bold{Age}}{The age of the athlete in years}
+#'          \item{\bold{Weight (KG)}}{The weight in kilograms for each athlete at the time of testing}
 #'          \item{\bold{Height (CM)}}{The height in cms for each athlete at the time of testing}
 #'          \item{\bold{Estimated Adult Height (CM)}}{The estimated adult height in cms of the athlete using the Khamis-Roche method. See references for further details}
 #'          \item{\bold{\% Adult Height}}{Their current height expressed as \%, compared to their predicted adult height}
 #'          \item{\bold{Z-Score}}{Estimated biological maturity status expressed as a z-score, using the percentage of adult stature attained at observation and age-specific means and standard deviations followed longitudinally in the Berkeley Growth Study. See references for further details}
 #'          \item{\bold{Maturity Status (\%AH)}}{A z-score of -0.5 to +0.5 was used to define average maturity status; a z-score greater than +0.5 defined early while a z-score below -0.5 defined late status. See references for further details}
+#'          \item{\bold{Days Btwn Test}}{The difference between testing dates, in days}
 #'          \item{\bold{Remaining Growth (CM)}}{The difference between their predicted adult height and current height, in cm}
+#'          \item{\bold{Growth (CM)}}{The difference in height between current and previous testing date, in cm}
+#'          \item{\bold{Growth Velocity (cm/yr)}}{The change in hieght over time}
+#'          \item{\bold{Weight Diff. (KG)}}{The difference in weight between current and previous testing date, in kg}
+#'          \item{\bold{Weight Velocity (kg/yr)}}{The change in weight over time}
 #'          \item{\bold{Mirwald MO (years)}}{Difference between their current age and their estimated age at PHV, espressed in years, using the Mirwald Method}
 #'          \item{\bold{Age @@ PHV (Mirwald)}}{The estimated age of the player at the time of Peak Height Velocity. Calculated using the Mirwald equation. See references for further details}
 #'          \item{\bold{Fransen MO (years)}}{Difference between their current age and their estimated age at PHV, espressed in years, using the Fransen Method}
@@ -77,8 +83,7 @@ maturation_cm <- function(data) {
     dplyr::mutate(`PHV Phase` = dplyr::case_when(`% Adult Height` < 88 ~ "Pre-PHV", `% Adult Height` > 94 ~ "Post-PHV", TRUE ~ "Circa-PHV")) %>%
     dplyr::mutate(`Z-Score` = ifelse(Gender == "Male", round((`% Adult Height` - `M-Adult Height Attained`) / `M-Standard Deviation`,2), round((`% Adult Height` - `F-Adult Height Attained`) / `F-Standard Deviation`,2))) %>%
     dplyr::mutate(`Maturity Status (%AH)` = ifelse(`Z-Score` > 0.5, "Early", ifelse(`Z-Score` < -0.5, "Late", "On-Time"))) %>%
-    dplyr::mutate(`Remaining Growth (CM)` = round((`Estimated Adult Height (CM)` - `Height (CM)`),2)) %>%
-    dplyr::mutate(`Remaining Growth (IN)` = round(`Remaining Growth (CM)` * 0.393701,2)) %>%
+    dplyr::mutate(`Estimated Remaining Growth (CM)` = round((`Estimated Adult Height (CM)` - `Height (CM)`),2)) %>%
     dplyr::mutate(`Mirwald MO (years)` = ifelse(Gender == "Male", round(-9.236 + (0.0002708 * (`Leg Length * Sitting Height`)) + (-0.001663 * `Age * Leg Length`) + (0.007216 * `Age * Sitting Height`) + (0.02292 * `W-H Ratio`),2), round(-9.376 + (0.0001882 * (`Leg Length * Sitting Height`)) + (0.0022 * `Age * Leg Length`) + (0.005841 * `Age * Sitting Height`) + (-0.002658 * `Age * Weight`) + (0.07693 * `W-H Ratio`),2))) %>%
     dplyr::mutate(`Age @ PHV (Mirwald)` = round(Age - `Mirwald MO (years)`,2)) %>%
     dplyr::mutate(`Fransen MO (years)` = ifelse(Gender == "Male", round(Age - `Fransen APHV`,2), "0")) %>%
@@ -86,11 +91,21 @@ maturation_cm <- function(data) {
     dplyr::mutate(Age = round(Age, 2),
                   `Height (CM)` = round(`Height (CM)`, 2)) %>%
     fuzzyjoin::fuzzy_left_join(ageR::ba,by = c("% Adult Height" = "%PAH", "% Adult Height" = "Column2"), match_fun = list(`>=`, `<=`)) %>%
-    dplyr::select(`Player Name`,`Age Group @ Testing`,Gender,`Testing Date`,`Birth Year`,Quarter,Age,`Height (CM)`,`Estimated Adult Height (CM)`,`% Adult Height`,`PHV Phase`,`Biological Age`,`Z-Score`,`Maturity Status (%AH)`,`Remaining Growth (CM)`,`Mirwald MO (years)`,`Age @ PHV (Mirwald)`,`Fransen MO (years)`,`Age @ PHV (Fransen)`) %>%
-    dplyr::mutate_at(vars(Age, `Height (CM)`, `Estimated Adult Height (CM)`, `% Adult Height`, `Z-Score`, `Remaining Growth (CM)`, `Mirwald MO (years)`, `Age @ PHV (Mirwald)`, `Fransen MO (years)`, `Age @ PHV (Fransen)`), as.numeric) %>%
+    dplyr::select(`Player Name`,`Age Group @ Testing`,Gender,`Testing Date`,`Birth Year`,Quarter,Age,`Weight (KG)`,`Height (CM)`,`Estimated Adult Height (CM)`,`% Adult Height`,`PHV Phase`,`Biological Age`,`Z-Score`,`Maturity Status (%AH)`,`Estimated Remaining Growth (CM)`,`Mirwald MO (years)`,`Age @ PHV (Mirwald)`,`Fransen MO (years)`,`Age @ PHV (Fransen)`) %>%
+    dplyr::mutate_at(vars(Age, `Weight (KG)`, `Height (CM)`, `Estimated Adult Height (CM)`, `% Adult Height`, `Z-Score`, `Estimated Remaining Growth (CM)`, `Mirwald MO (years)`, `Age @ PHV (Mirwald)`, `Fransen MO (years)`, `Age @ PHV (Fransen)`), as.numeric) %>%
     dplyr::mutate(`Bio-Band` = ifelse(`% Adult Height` < 85, "Pre-Pubertal",
                                         ifelse(`% Adult Height` >= 85 & `% Adult Height` < 90, "Early Pubertal",
-                                               ifelse(`% Adult Height` >= 90 & `% Adult Height` < 95, "Mid-Pubertal", "Late Pubertal"))))
+                                               ifelse(`% Adult Height` >= 90 & `% Adult Height` < 95, "Mid-Pubertal", "Late Pubertal")))) %>%
+    dplyr::ungroup() %>% dplyr::group_by(`Player Name`) %>% dplyr::arrange(`Testing Date`, .by_group = TRUE) %>%
+    dplyr::mutate(`Weight (KG)` = round(`Weight (KG)`,2),
+                  `Days Btwn Tests` = as.numeric(`Testing Date` - lag(`Testing Date`)),
+                  `Growth (CM)` = `Height (CM)` - lag(`Height (CM)`),
+                  `Growth Velocity (cm/yr)` = round((`Growth (CM)` / `Days Btwn Tests`) * 365,2),
+                  `Weight Diff. (KG)` = `Weight (KG)` - lag(`Weight (KG)`),
+                  `Weight Velocity (kg/yr)` = round((`Weight Diff. (KG)` / `Days Btwn Tests`) * 365,2)) %>% dplyr::ungroup() %>%
+    dplyr::mutate(across(c(`Days Btwn Tests`,`Growth (CM)`,`Growth Velocity (cm/yr)`,`Weight Diff. (KG)`,`Weight Velocity (kg/yr)`), ~ ifelse(is.na(.),"",round(.,2)))) %>%
+    dplyr::select(`Player Name`,`Age Group @ Testing`,Gender,`Testing Date`,`Birth Year`,Quarter,Age,`Weight (KG)`,`Height (CM)`,`Estimated Adult Height (CM)`,`% Adult Height`,`PHV Phase`,`Biological Age`,`Z-Score`,`Maturity Status (%AH)`,
+                  `Days Btwn Tests`,`Estimated Remaining Growth (CM)`,`Growth (CM)`,`Growth Velocity (cm/yr)`,`Weight Diff. (KG)`,`Weight Velocity (kg/yr)`,`Mirwald MO (years)`,`Age @ PHV (Mirwald)`,`Fransen MO (years)`,`Age @ PHV (Fransen)`)
 
   return(final_table)
 
