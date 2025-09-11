@@ -74,6 +74,7 @@ maturation_cm <- function(data) {
     dplyr::mutate(`Estimated Adult Height (IN)` = ifelse(Gender == "Male", round(`B1` + (`Height (IN)` * `M-Height`) + (`Weight (LB)` * `M-Weight`) + (`Parent Mid Height (IN)` * `M-Midparent Stature`),2), round(`B2` + (`Height (IN)` * `F-Height`) + (`Weight (LB)` * `F-Weight`) + (`Parent Mid Height (IN)` * `F-Midparent Stature`),2))) %>%
     dplyr::mutate(`Estimated Adult Height (CM)` = round(`Estimated Adult Height (IN)` * 2.54,2)) %>%
     dplyr::mutate(`% Adult Height` = round((`Height (CM)` / `Estimated Adult Height (CM)`) * 100,2)) %>%
+    dplyr::mutate(`PHV Phase` = if(`% Adult Height` < 88) {"Pre-PHV"} else if(`% Adult Height` > 94) {"Post-PHV"} else {"Circa-PHV"}) %>%
     dplyr::mutate(`Z-Score` = ifelse(Gender == "Male", round((`% Adult Height` - `M-Adult Height Attained`) / `M-Standard Deviation`,2), round((`% Adult Height` - `F-Adult Height Attained`) / `F-Standard Deviation`,2))) %>%
     dplyr::mutate(`Maturity Status (%AH)` = ifelse(`Z-Score` > 0.5, "Early", ifelse(`Z-Score` < -0.5, "Late", "On-Time"))) %>%
     dplyr::mutate(`Remaining Growth (CM)` = round((`Estimated Adult Height (CM)` - `Height (CM)`),2)) %>%
@@ -85,7 +86,7 @@ maturation_cm <- function(data) {
     dplyr::mutate(Age = round(Age, 2),
                   `Height (CM)` = round(`Height (CM)`, 2)) %>%
     fuzzyjoin::fuzzy_left_join(ageR::ba,by = c("% Adult Height" = "%PAH", "% Adult Height" = "Column2"), match_fun = list(`>=`, `<=`)) %>%
-    dplyr::select(`Player Name`,`Age Group @ Testing`,Gender,`Testing Date`,`Birth Year`,Quarter,Age,`Height (CM)`,`Estimated Adult Height (CM)`,`% Adult Height`,`Biological Age`,`Z-Score`,`Maturity Status (%AH)`,`Remaining Growth (CM)`,`Mirwald MO (years)`,`Age @ PHV (Mirwald)`,`Fransen MO (years)`,`Age @ PHV (Fransen)`) %>%
+    dplyr::select(`Player Name`,`Age Group @ Testing`,Gender,`Testing Date`,`Birth Year`,Quarter,Age,`Height (CM)`,`Estimated Adult Height (CM)`,`% Adult Height`,`PHV Phase`,`Biological Age`,`Z-Score`,`Maturity Status (%AH)`,`Remaining Growth (CM)`,`Mirwald MO (years)`,`Age @ PHV (Mirwald)`,`Fransen MO (years)`,`Age @ PHV (Fransen)`) %>%
     dplyr::mutate_at(vars(Age, `Height (CM)`, `Estimated Adult Height (CM)`, `% Adult Height`, `Z-Score`, `Remaining Growth (CM)`, `Mirwald MO (years)`, `Age @ PHV (Mirwald)`, `Fransen MO (years)`, `Age @ PHV (Fransen)`), as.numeric) %>%
     dplyr::mutate(`Bio-Band` = ifelse(`% Adult Height` < 85, "Pre-Pubertal",
                                         ifelse(`% Adult Height` >= 85 & `% Adult Height` < 90, "Early Pubertal",
