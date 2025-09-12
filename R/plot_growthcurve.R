@@ -102,6 +102,8 @@ plot_growthcurve <- function(data, athlete, date, reference, gender) {
     dplyr::select(Gender, Age, everything(), -`L (Power)`, -`M (Median)`, -`S (CV)`) %>%
     dplyr::filter(Gender == gender)
 
+  max_age <- max(curve_data$Age)
+
   athlete_colors <- rainbow(length(unique(data$`Player Name`)))
 
   plot <- ggplot2::ggplot(curve) +
@@ -122,7 +124,7 @@ plot_growthcurve <- function(data, athlete, date, reference, gender) {
     ggplot2::geom_ribbon(ggplot2::aes(ymin=P10, ymax=P90, x=Age), fill = "skyblue3") +
     ggplot2::geom_ribbon(ggplot2::aes(ymin=P25, ymax=P75, x=Age), fill = "skyblue4") +
     ggplot2::geom_line(ggplot2::aes(y=P50, x=Age), colour = "gray", linetype = 2) +
-    ggplot2::geom_vline(ggplot2::aes(xintercept = 20), color = "black", alpha = .6) +
+    ggplot2::geom_vline(ggplot2::aes(xintercept = max_age), color = "black", alpha = .6) +
     ggplot2::geom_curve(data = data, ggplot2::aes(x = Age, y = `Height (CM)`, xend = 16.5, yend = 135), color = "black", curvature = 0.2, linewidth = 0.5, linetype = 1) +
     ggplot2::annotate("text", x = 17, y = 125, label = "Current \n Height", color = "black", size = 3) +
     ggplot2::geom_point(data = data, ggplot2::aes(Age, `Height (CM)`, color = `Player Name`), size = 3) +
