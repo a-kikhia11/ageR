@@ -4,6 +4,8 @@
 # {ageR}
 ### Athlete Growth &amp; Maturation
 
+<img src="man/images/ageR.png" align="right" width="300" />
+
 ## Intro
 
 The identification and development of talented young football players is a primary focus of all professional football academies around the world (1). However, it becomes more difficult to assess adolescent players development when they experience the non-linear tempo and timing of their maturational growth spurt (2). Hence, it has become increasingly important to monitor athletes growth and maturation in order to minimize growth related injuries as well as allow for better adjustments of training and competition exposure (1). Non-invasive measures have become increasingly used within team sports as it provides practitioners with a practical, cost and time effective way of assessing maturation within a large team setting (3;4).
