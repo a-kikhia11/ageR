@@ -59,15 +59,15 @@ plot_MatStages_Mirwald <- function(data, athlete = NULL, date = NULL, agegroup =
     ggplot2::annotate("rect", xmin = -Inf, xmax = Inf, ymin = 96, ymax = 100, fill = "gray", alpha = 0.8)
     if (any(data$`Mirwald MO (years)` > -1 & data$`Mirwald MO (years)` < 1)) {
       plot <- plot +
-        ggplot2::annotate("text", x = puberty_x, y = 101, label = "Puberty", size = 3, color = "white")
+        ggplot2::annotate("text", x = puberty_x, y = 101, label = "Circa-PHV", size = 3, color = "white")
     }
     if (min_value <= -1) {
       plot <- plot +
-        ggplot2::annotate("text", x = pre_puberty_x, y = 101, label = "Pre-Puberty", size = 3, color = "white")
+        ggplot2::annotate("text", x = pre_puberty_x, y = 101, label = "Pre-PHV", size = 3, color = "white")
     }
     if (max_value >= 1.5) {
       plot <- plot +
-        ggplot2::annotate("text", x = post_puberty_x, y = 101, label = "Post-Puberty", size = 3, color = "white")
+        ggplot2::annotate("text", x = post_puberty_x, y = 101, label = "Post-PHV", size = 3, color = "white")
     }
 
   plot <- plot +
