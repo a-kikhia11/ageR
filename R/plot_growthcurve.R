@@ -14,7 +14,6 @@
 #' @param athlete A character string with the name of the athlete we wish to plot.
 #' @param date A character vector. Dates to filter the data (in yyyy-mm-dd).
 #' @param reference A character string. Choose US (CDC), UK (UK90), Turkey (TK), Belgium (BE), or Norway (NO) growth references.
-#' @param gender A character vector. Gender of athletes to include in the plot (default to include ALL athletes)
 #' @return A plot (\code{\bold{ggplot}})
 #'
 #' @export
