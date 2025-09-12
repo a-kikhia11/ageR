@@ -7,6 +7,7 @@
 #' @param athlete A character vector. Names of athletes to include in the plot.
 #' @param date A character vector. Dates to filter the data (in yyyy-mm-dd).
 #' @param agegroup A character vector. Age Group of athletes at time of testing.
+#' @param gender A character vector. Gender of athletes you wish to analyze.
 #' @return A plot (\code{\bold{ggplot}})
 #'
 #' @export
@@ -14,7 +15,7 @@
 #' plot_PAH_ftin(data_sample)
 #'
 
-plot_PAH_ftin <- function(data, athlete = NULL, date = NULL, agegroup = NULL) {
+plot_PAH_ftin <- function(data, athlete = NULL, date = NULL, agegroup = NULL, gender = NULL) {
 
   data <- maturation_in(data)
 
@@ -29,6 +30,10 @@ plot_PAH_ftin <- function(data, athlete = NULL, date = NULL, agegroup = NULL) {
 
   if (!is.null(agegroup)) {
     data <- data[data$`Age Group @ Testing` %in% agegroup, ]
+  }
+
+  if (!is.null(gender)) {
+    data <- data[data$Gender %in% gender, ]
   }
 
   inches_to_feet <- function(inches) {
