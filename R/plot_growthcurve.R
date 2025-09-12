@@ -25,8 +25,7 @@
 
 plot_growthcurve <- function(data, athlete, date, reference) {
 
-  data <- maturation_cm(data)
-  gender <- unique(data$Gender)
+  data <- maturation_cm(ED)
 
   if (reference == "US") {
     curve_data <- ageR::CDC_curves
@@ -54,6 +53,8 @@ plot_growthcurve <- function(data, athlete, date, reference) {
     date <- as.Date(date)
     data <- data[data$`Testing Date` %in% date, ]
   }
+
+  gender <- unique(data$Gender)
 
   if (length(gender) > 1) {
     stop("Invalid gender parameter. Cannot plot two genders at a time.")
