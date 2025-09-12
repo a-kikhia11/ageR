@@ -13,7 +13,7 @@ plot_growthcurve(data, athlete, date, reference, gender)
 
 \item{date}{A character vector. Dates to filter the data (in yyyy-mm-dd).}
 
-\item{reference}{A character string. Choose US (CDC) or UK (UK90) growth references.}
+\item{reference}{A character string. Choose US (CDC), UK (UK90), Turkey (TK), Belgium (BE), or Norway (NO) growth references.}
 
 \item{gender}{A character vector. Gender of athletes to include in the plot (default to include ALL athletes)}
 }
@@ -21,7 +21,7 @@ plot_growthcurve(data, athlete, date, reference, gender)
 A plot (\code{\bold{ggplot}})
 }
 \description{
-This function returns a ggplot object showing the \bold{current} and \bold{predicted height} vs \bold{US} or \bold{UK} normal growth charts. \bold{ALL parameters within the function MUST be occupied.}
+This function returns a ggplot object showing the \bold{current} and \bold{predicted height} vs \bold{normal growth charts}. \bold{ALL parameters within the function MUST be occupied.}
 }
 \details{
 Data for US growth charts was obtained from the National Center for Health Statistics. Please visit \url{https://www.cdc.gov/growthcharts/percentile_data_files.htm} to learn more.

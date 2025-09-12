@@ -94,8 +94,9 @@ maturation_in <- function (data) {
     dplyr::mutate(`PHV Phase` = dplyr::case_when(`% Adult Height` < 88 ~ "Pre-PHV", `% Adult Height` > 94 ~ "Post-PHV", TRUE ~ "Circa-PHV")) %>%
     dplyr::mutate(`Z-Score` = ifelse(Gender == "Male", round((`% Adult Height` - `M-Adult Height Attained`) / `M-Standard Deviation`,2), round((`% Adult Height` - `F-Adult Height Attained`) / `F-Standard Deviation`,2))) %>%
     dplyr::mutate(`Maturity Status (%AH)` = ifelse(`Z-Score` > 0.5, "Early", ifelse(`Z-Score` < -0.5, "Late", "On-Time"))) %>%
-    dplyr::mutate(`Estimated Remaining Growth (IN)` = round(`Remaining Growth (CM)` * 0.393701,2)) %>%
-    dplyr::mutate(`Estimated Remaining Growth (FT'IN")` = inches_to_feet(`Remaining Growth (IN)`)) %>%
+    dplyr::mutate(`Estimated Remaining Growth (CM)` = round((`Estimated Adult Height (CM)` - `Height (CM)`),2)) %>%
+    dplyr::mutate(`Estimated Remaining Growth (IN)` = round(`Estimated Remaining Growth (CM)` * 0.393701,2)) %>%
+    dplyr::mutate(`Estimated Remaining Growth (FT'IN")` = inches_to_feet(`Estimated Remaining Growth (IN)`)) %>%
     dplyr::mutate(`Mirwald MO (years)` = ifelse(Gender == "Male", round(-9.236 + (0.0002708 * (`Leg Length * Sitting Height`)) + (-0.001663 * `Age * Leg Length`) + (0.007216 * `Age * Sitting Height`) + (0.02292 * `W-H Ratio`),2), round(-9.376 + (0.0001882 * (`Leg Length * Sitting Height`)) + (0.0022 * `Age * Leg Length`) + (0.005841 * `Age * Sitting Height`) + (-0.002658 * `Age * Weight`) + (0.07693 * `W-H Ratio`),2))) %>%
     dplyr::mutate(`Age @ PHV (Mirwald)` = round(Age - `Mirwald MO (years)`,2)) %>%
     dplyr::mutate(`Fransen MO (years)` = ifelse(Gender == "Male", round(Age - `Fransen APHV`,2), "0")) %>%
@@ -104,7 +105,7 @@ maturation_in <- function (data) {
                   `Height (IN)` = round(`Height (IN)`, 2)) %>%
     fuzzyjoin::fuzzy_left_join(ageR::ba,by = c("% Adult Height" = "%PAH", "% Adult Height" = "Column2"), match_fun = list(`>=`, `<=`)) %>%
     dplyr::select(`Player Name`,`Age Group @ Testing`,Gender,`Testing Date`,`Birth Year`,Quarter,Age,`Weight (LB)`,`Height (IN)`,`Height (FT'IN")`,`Estimated Adult Height (IN)`,`Estimated Adult Height (FT'IN")`,`% Adult Height`,`PHV Phase`,`Biological Age`,`Z-Score`,`Maturity Status (%AH)`,`Estimated Remaining Growth (IN)`,`Estimated Remaining Growth (FT'IN")`,`Mirwald MO (years)`,`Age @ PHV (Mirwald)`,`Fransen MO (years)`,`Age @ PHV (Fransen)`) %>%
-    dplyr::mutate_at(vars(Age, `Weight (LB)`, `Height (IN)`, `Estimated Adult Height (IN)`, `% Adult Height`, `Z-Score`, `Remaining Growth (IN)`, `Mirwald MO (years)`, `Age @ PHV (Mirwald)`, `Fransen MO (years)`, `Age @ PHV (Fransen)`), as.numeric) %>%
+    dplyr::mutate_at(vars(Age, `Weight (LB)`, `Height (IN)`, `Estimated Adult Height (IN)`, `% Adult Height`, `Z-Score`, `Estimated Remaining Growth (IN)`, `Mirwald MO (years)`, `Age @ PHV (Mirwald)`, `Fransen MO (years)`, `Age @ PHV (Fransen)`), as.numeric) %>%
     dplyr::mutate(`Bio-Band` = ifelse(`% Adult Height` < 85, "Pre-Pubertal",
                                         ifelse(`% Adult Height` >= 85 & `% Adult Height` < 90, "Early Pubertal",
                                                ifelse(`% Adult Height` >= 90 & `% Adult Height` < 95, "Mid-Pubertal", "Late Pubertal")))) %>%
@@ -112,10 +113,10 @@ maturation_in <- function (data) {
     dplyr::mutate(`Weight (LB)` = round(`Weight (LB)`,2),
                   `Days Btwn Tests` = as.numeric(`Testing Date` - lag(`Testing Date`)),
                   `Growth (IN)` = `Height (IN)` - lag(`Height (IN)`),
-                  `Growth Velocity (in/yr)` = round((Growth / `Days Btwn Tests`) * 365,2),
+                  `Growth Velocity (in/yr)` = round((`Growth (IN)` / `Days Btwn Tests`) * 365,2),
                   `Weight Diff. (LB)` = `Weight (LB)` - lag(`Weight (LB)`),
                   `Weight Velocity (lb/yr)` = round((`Weight Diff. (LB)` / `Days Btwn Tests`) * 365,2)) %>% dplyr::ungroup() %>%
-    dplyr::mutate(across(c(`Days Btwn Tests`,`Growth (IN)`,`Growth Velocity (cm/yr)`,`Weight Diff. (KG)`,`Weight Velocity (kg/yr)`), ~ ifelse(is.na(.),"",round(.,2)))) %>%
+    dplyr::mutate(across(c(`Days Btwn Tests`,`Growth (IN)`,`Growth Velocity (in/yr)`,`Weight Diff. (LB)`,`Weight Velocity (lb/yr)`), ~ ifelse(is.na(.),"",round(.,2)))) %>%
     dplyr::select(`Player Name`,`Age Group @ Testing`,Gender,`Testing Date`,`Birth Year`,Quarter,Age,`Weight (LB)`,`Height (IN)`,`Height (FT'IN")`,`Estimated Adult Height (IN)`,`Estimated Adult Height (FT'IN")`,`% Adult Height`,`PHV Phase`,`Biological Age`,`Z-Score`,`Maturity Status (%AH)`,
                   `Days Btwn Tests`,`Estimated Remaining Growth (IN)`,`Estimated Remaining Growth (FT'IN")`,`Growth (IN)`,`Growth Velocity (in/yr)`,`Weight Diff. (LB)`,`Weight Velocity (lb/yr)`,`Mirwald MO (years)`,`Age @ PHV (Mirwald)`,`Fransen MO (years)`,`Age @ PHV (Fransen)`)
 

@@ -13,12 +13,18 @@ A data frame returning 18 variables:
          \item{\bold{Birth Year}}{The year of birth for every athlete}
          \item{\bold{Quarter}}{The yearly quarter in which athletes were born}
          \item{\bold{Age}}{The age of the athlete in years}
+         \item{\bold{Weight (KG)}}{The weight in kilograms for each athlete at the time of testing}
          \item{\bold{Height (CM)}}{The height in cms for each athlete at the time of testing}
          \item{\bold{Estimated Adult Height (CM)}}{The estimated adult height in cms of the athlete using the Khamis-Roche method. See references for further details}
          \item{\bold{\% Adult Height}}{Their current height expressed as \%, compared to their predicted adult height}
          \item{\bold{Z-Score}}{Estimated biological maturity status expressed as a z-score, using the percentage of adult stature attained at observation and age-specific means and standard deviations followed longitudinally in the Berkeley Growth Study. See references for further details}
          \item{\bold{Maturity Status (\%AH)}}{A z-score of -0.5 to +0.5 was used to define average maturity status; a z-score greater than +0.5 defined early while a z-score below -0.5 defined late status. See references for further details}
+         \item{\bold{Days Btwn Test}}{The difference between testing dates, in days}
          \item{\bold{Remaining Growth (CM)}}{The difference between their predicted adult height and current height, in cm}
+         \item{\bold{Growth (CM)}}{The difference in height between current and previous testing date, in cm}
+         \item{\bold{Growth Velocity (cm/yr)}}{The change in hieght over time}
+         \item{\bold{Weight Diff. (KG)}}{The difference in weight between current and previous testing date, in kg}
+         \item{\bold{Weight Velocity (kg/yr)}}{The change in weight over time}
          \item{\bold{Mirwald MO (years)}}{Difference between their current age and their estimated age at PHV, espressed in years, using the Mirwald Method}
          \item{\bold{Age @ PHV (Mirwald)}}{The estimated age of the player at the time of Peak Height Velocity. Calculated using the Mirwald equation. See references for further details}
          \item{\bold{Fransen MO (years)}}{Difference between their current age and their estimated age at PHV, espressed in years, using the Fransen Method}

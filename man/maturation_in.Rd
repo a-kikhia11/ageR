@@ -13,6 +13,7 @@ A data frame returning 20 variables:
          \item{\bold{Birth Year}}{The year of birth for every athlete}
          \item{\bold{Quarter}}{The yearly quarter in which athletes were born}
          \item{\bold{Age}}{The age of the athlete in years}
+         \item{\bold{Weight (LB)}}{The weight in pounds for each athlete at the time of testing}
          \item{\bold{Height (IN)}}{The height in inches for each athlete at the time of testing}
          \item{\bold{Height (FT'IN")}}{The height in feet and inches for each athlete at the time of testing}
          \item{\bold{Estimated Adult Height (IN)}}{The estimated adult height in inches of the athlete using the Khamis-Roche method. See references for further details}
@@ -20,7 +21,13 @@ A data frame returning 20 variables:
          \item{\bold{\% Adult Height}}{Their current height expressed as \%, compared to their predicted adult height}
          \item{\bold{Z-Score}}{Estimated biological maturity status expressed as a z-score, using the percentage of adult stature attained at observation and age-specific means and standard deviations followed longitudinally in the Berkeley Growth Study. See references for further details}
          \item{\bold{Maturity Status (\%AH)}}{A z-score of -0.5 to +0.5 was used to define average maturity status; a z-score greater than +0.5 defined early while a z-score below -0.5 defined late status. See references for further details}
-         \item{\bold{Remaining Growth (IN)}}{The difference between their predicted adult height and current height, in inches}
+         \item{\bold{Days Btwn Test}}{The difference between testing dates, in days}
+         \item{\bold{Estimated Remaining Growth (IN)}}{The difference between their predicted adult height and current height, in inches}
+         \item{\bold{Estimated Remaining Growth (FT'IN")}}{The difference between their predicted adult height and current height, in feet and inches}
+         \item{\bold{Growth (IN)}}{The difference in height between current and previous testing date, in in}
+         \item{\bold{Growth Velocity (in/yr)}}{The change in hieght over time}
+         \item{\bold{Weight Diff. (LB)}}{The difference in weight between current and previous testing date, in lbs}
+         \item{\bold{Weight Velocity (lb/yr)}}{The change in weight over time}
          \item{\bold{Mirwald MO (years)}}{Difference between their current age and their estimated age at PHV, espressed in years, using the Mirwald Method}
          \item{\bold{Age @ PHV (Mirwald)}}{The estimated age of the player at the time of Peak Height Velocity. Calculated using the Mirwald equation. See references for further details}
          \item{\bold{Fransen MO (years)}}{Difference between their current age and their estimated age at PHV, espressed in years, using the Fransen Method}
