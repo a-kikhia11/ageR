@@ -52,7 +52,7 @@ plot_growthcurve <- function(data, athlete, date, reference) {
     data <- data[data$`Testing Date` %in% date, ]
   }
 
-  if (all(c("Male", "Female") %in% unique(df$Gender))) {
+  if (all(c("Male", "Female") %in% unique(data$Gender))) {
     stop("Invalid gender parameter. Cannot plot two genders at a time.")
   }
 
