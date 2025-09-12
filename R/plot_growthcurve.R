@@ -18,9 +18,9 @@
 #'
 #' @export
 #' @examples
-#' plot_growthcurve(data_sample, "Athlete 08", "2020-07-01","UK", "Male")
-#' plot_growthcurve(data_sample, "Athlete 17", "2020-07-01","US", "Female")
-#' plot_growthcurve(data_sample, athlete = c("Athlete 02", "Athlete 08"),"2020-07-01","UK","Male")
+#' plot_growthcurve(data_sample, "Athlete 08", "2020-07-01","UK")
+#' plot_growthcurve(data_sample, "Athlete 17", "2020-07-01","BE")
+#' plot_growthcurve(data_sample, athlete = c("Athlete 02", "Athlete 08"),"2020-07-01","US")
 #'
 
 plot_growthcurve <- function(data, athlete, date, reference) {
