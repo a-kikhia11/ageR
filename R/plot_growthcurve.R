@@ -24,9 +24,7 @@
 #' plot_growthcurve(data_sample, athlete = c("Athlete 02", "Athlete 08"),"2020-07-01","UK","Male")
 #'
 
-plot_growthcurve <- function(data, athlete, date, reference, gender) {
-
-  data <- maturation_cm(data)
+plot_growthcurve <- function(data, athlete, date, reference) {
 
   if (reference == "US") {
     curve_data <- ageR::CDC_curves
@@ -42,11 +40,6 @@ plot_growthcurve <- function(data, athlete, date, reference, gender) {
     stop("Invalid reference parameter. Please use 'US' or 'UK'.")
   }
 
-  if (gender != "Male" && gender != "Female") {
-    warning("Invalid gender parameter. Please use 'Male' or 'Female'.")
-    return(NULL)
-  }
-
   if (missing(athlete) || is.null(athlete) || length(athlete) == 0) {
     stop("Invalid athlete parameter. Insert Athlete Name.")
   } else if (!is.null(athlete)) {
@@ -59,6 +52,13 @@ plot_growthcurve <- function(data, athlete, date, reference, gender) {
     date <- as.Date(date)
     data <- data[data$`Testing Date` %in% date, ]
   }
+
+  if (all(c("Male", "Female") %in% unique(df$Gender))) {
+    stop("Invalid gender parameter. Cannot plot two genders at a time.")
+  }
+
+  data <- maturation_cm(data)
+  gender <- data %>% unique(df$Gender)
 
   Subtitle <- if (reference == "UK") {
     if (gender == "Male") {
@@ -93,7 +93,9 @@ plot_growthcurve <- function(data, athlete, date, reference, gender) {
   }
 
   Caption <- if (reference == "US") {
-    "For more information about growth charts visit https://www.cdc.gov/growthcharts/"
+    "For more information about US growth charts visit https://www.cdc.gov/growthcharts/"
+  } else if (reference == "UK") {
+    "For more information about UK growth charts visit https://www.rcpch.ac.uk/resources/uk-who-growth-charts-2-18-years"
   } else {
     ""
   }
@@ -108,7 +110,7 @@ plot_growthcurve <- function(data, athlete, date, reference, gender) {
 
   plot <- ggplot2::ggplot(curve) +
     ggplot2::annotate("rect", xmin = 7.9, xmax = 12, ymin = 187, ymax = 216, fill = "white") +
-    ggplot2::annotate("text", x = 10.9, y = 215, label = "Normal Growth Curve", color = "black", size = 3) +
+    ggplot2::annotate("text", x = 9.5, y = 215, label = "Normal Growth Curve", color = "black", size = 3) +
     ggplot2::annotate("rect", xmin = 8, xmax = 8.6, ymin = 205, ymax = 210, fill = "skyblue1") +
     ggplot2::annotate("text", x = 10, y = 208, label = "3-97 Percentiles", color = "black", size = 2) +
     ggplot2::annotate("rect", xmin = 8, xmax = 8.6, ymin = 200, ymax = 205, fill = "skyblue2") +
@@ -117,8 +119,8 @@ plot_growthcurve <- function(data, athlete, date, reference, gender) {
     ggplot2::annotate("text", x = 10, y = 198, label = "10-90 Percentiles", color = "black", size = 2) +
     ggplot2::annotate("rect", xmin = 8, xmax = 8.6, ymin = 190, ymax = 195, fill = "skyblue4") +
     ggplot2::annotate("text", x = 10, y = 193, label = "25-75 Percentiles", color = "black", size = 2) +
-    ggplot2::annotate("rect", xmin = 20, xmax = 22, ymin = max(curve$P3), ymax = max(curve$P97), fill = "black", alpha = .6) +
-    ggplot2::annotate("text", x = 21.5, y = 75, label = "Adult Years", color = "black", size = 3) +
+    ggplot2::annotate("rect", xmin = max_age, xmax = max_age + 2, ymin = max(curve$P3), ymax = max(curve$P97), fill = "black", alpha = .6) +
+    ggplot2::annotate("text", x = max_age + 1.5, y = 75, label = "Adult Years", color = "black", size = 3) +
     ggplot2::geom_ribbon(ggplot2::aes(ymin=P3, ymax=P97, x=Age), fill = "skyblue1") +
     ggplot2::geom_ribbon(ggplot2::aes(ymin=P5, ymax=P95, x=Age), fill = "skyblue2") +
     ggplot2::geom_ribbon(ggplot2::aes(ymin=P10, ymax=P90, x=Age), fill = "skyblue3") +
@@ -128,8 +130,8 @@ plot_growthcurve <- function(data, athlete, date, reference, gender) {
     ggplot2::geom_curve(data = data, ggplot2::aes(x = Age, y = `Height (CM)`, xend = 16.5, yend = 135), color = "black", curvature = 0.2, linewidth = 0.5, linetype = 1) +
     ggplot2::annotate("text", x = 17, y = 125, label = "Current \n Height", color = "black", size = 3) +
     ggplot2::geom_point(data = data, ggplot2::aes(Age, `Height (CM)`, color = `Player Name`), size = 3) +
-    ggplot2::geom_point(data = data %>% dplyr::mutate(Age = 21), ggplot2::aes(Age, `Estimated Adult Height (CM)`, color = `Player Name`), size = 3) +
-    ggplot2::geom_curve(data = data %>% dplyr::mutate(Age2 = 21), ggplot2::aes(x = Age, y = `Height (CM)`, xend = Age2, yend = `Estimated Adult Height (CM)`, color = `Player Name`), curvature = -0.05, linewidth = 0.5, linetype = 1) +
+    ggplot2::geom_point(data = data %>% dplyr::mutate(Age = max_age + 1), ggplot2::aes(Age, `Estimated Adult Height (CM)`, color = `Player Name`), size = 3) +
+    ggplot2::geom_curve(data = data %>% dplyr::mutate(Age2 = max_age + 1), ggplot2::aes(x = Age, y = `Height (CM)`, xend = Age2, yend = `Estimated Adult Height (CM)`, color = `Player Name`), curvature = -0.05, linewidth = 0.5, linetype = 1) +
     ggplot2::scale_color_manual(name = "Player Name", values = athlete_colors) +
     ggplot2::scale_x_continuous(breaks = seq(0, 20, by = 2.5)) +
     ggplot2::ylim(75, 220) +
