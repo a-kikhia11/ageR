@@ -25,18 +25,18 @@
 
 plot_growthcurve <- function(data, athlete, date, reference) {
 
-  data <- maturation_cm(ED)
+  data <- maturation_cm(data)
 
   if (reference == "US") {
-    curve_data <- ageR::CDC_curves
+    curve_data <- ageR::curves_CDC
   } else if (reference == "UK") {
-    curve_data <- ageR::UK90_curves
+    curve_data <- ageR::curves_UK90
   } else if (reference == "BE") {
-    curve_data <- ageR::BE_curves
+    curve_data <- ageR::curves_BE
   } else if (reference == "TK") {
-    curve_data <- ageR::TK_curves
+    curve_data <- ageR::curves_TK
   } else if (reference == "NO") {
-    curve_data <- ageR::NO_curves
+    curve_data <- ageR::curves_NO
   } else {
     stop("Invalid reference parameter. Please use 'US' or 'UK'.")
   }

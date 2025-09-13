@@ -21,7 +21,7 @@
 #'    \item{\bold{P97}}{Data under percentile 97}
 #'
 #' }
-#' @usage NO_curves
+#' @usage curves_NO
 #'
 
-"NO_curves"
+"curves_NO"
