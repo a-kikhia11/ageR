@@ -1,10 +1,10 @@
-[![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
-[![Status](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+[![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause) [![Status](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 
 # {ageR}
-### Athlete Growth &amp; Maturation
 
-<img src="man/images/ageR.png" align="right" width="300" />
+### Athlete Growth & Maturation
+
+<img src="data-raw/images/ageR.png" align="right" width="300"/>
 
 ## Intro
 
@@ -14,32 +14,33 @@ The goal of this repository is to showcase {ageR}, a package that provides the f
 
 **Predicted Age at Peak Height Velocity (PHV):** The two methods used to calculate this metric are based on research from Mirlwald et al. (2002) and Fransen et al. (2018), using the following measurements:
 
-* gender
-* date of birth
-* date of measurement
-* height (cm)
-* sitting height (cm)
-* weight (kg)
+-   gender
+-   date of birth
+-   date of measurement
+-   height (cm)
+-   sitting height (cm)
+-   weight (kg)
 
 **Predicted Adult Height (PAH):** This is based on the Khamis-Roche method and uses the following measurements:
 
-* age
-* gender
-* height (cm)
-* weight (kg)
-* mother height (cm)
-* father height (cm)
+-   age
+-   gender
+-   height (cm)
+-   weight (kg)
+-   mother height (cm)
+-   father height (cm)
 
 ## Installation
 
-```
+```         
 # Install from GitHub  
 install.packages("devtools")
 devtools::install_github("a-kikhia11/ageR")
 ```
 
 ## Data Collection
-Usable data must follow the same template as the **data_sample** sheet supplied within the package. Ensure that there are no blank fields within the dataset. 
+
+Usable data must follow the same template as the **data_sample** sheet supplied within the package. Ensure that there are no blank fields within the dataset.
 
 **{ageR}** provides two Maturity Offset calculation methods (Mirwald and Fransen) as well as the Khamis-Roche method in the same dataset
 
@@ -47,7 +48,7 @@ Usable data must follow the same template as the **data_sample** sheet supplied 
 
 ### Sample Data / Template
 
-```
+```         
 library(ageR)
 
 data_sample
@@ -56,125 +57,118 @@ data_sample
 ## Usage
 
 ### Data Frames:
+
 The two main functions within the package are *`maturation_cm()`* and *`maturation_in()`*. Both functions perform the same calculations, however the units are different. The function takes the raw data from the template and performs the Khamis-Roche, Mirwarld, and Fransen calculations returning a dataframe that users can manipulate for further analysis.
 
-```
+```         
 library(ageR)
 
 maturation_cm(data_sample)
 ```
 
-<img src="data-raw/images/maturation_cm.png" width="800" />
+<img src="data-raw/images/maturation_cm.png" width="800"/> <img src="data-raw/images/maturation_cm2.png" width="800"/> <img src="data-raw/images/maturation_cm3.png" width="375"/>
 
-```
+```         
 library(ageR)
 
 maturation_in(data_sample)
 ```
 
-<img src="data-raw/images/maturation_in.png" width="800" />
+<img src="data-raw/images/maturation_in.png" width="800"/> <img src="data-raw/images/maturation_in2.png" width="800"/> <img src="data-raw/images/maturation_in3.png" width="800"/>
 
 ### Plots:
+
 **{ageR}** provides several visualization options:
 
-**Predicted Adult Height Plot** (note the three options depending on centimeters, inches, or feet and inches)
+**Predicted Adult Height Plot** (you can switch between measures by specifying the metric parameter)
 
-```
+```         
 library(ageR)
 
-plot_PAH_cm(data_sample)
+plot_PAH(data_sample)
 ```
 
-<img src="data-raw/images/plot_PAH_cm.png" width="600" />
+<img src="data-raw/images/plot_PAH_cm.png" width="600"/>
 
-```
+```         
 library(ageR)
 
-plot_PAH_in(data_sample)
+plot_PAH(data_sample,metric = "in")
 ```
 
-<img src="data-raw/images/plot_PAH_in.png" width="600" />
-
-```
-library(ageR)
-
-plot_PAH_ftin(data_sample)
-```
-
-<img src="data-raw/images/plot_PAH_ftin.png" width="600" />
+<img src="data-raw/images/plot_PAH_in.png" width="600"/>
 
 **Time to PHV Dumbell Plot** (note the two options for calculating Time to PHV, Mirwald and Fransen)
 
-```
+```         
 library(ageR)
 
 plot_time2phv_Mirwald(data_sample)
 ```
 
-<img src="data-raw/images/plot_time2phv_Mirwald.png" width="600" />
+<img src="data-raw/images/plot_time2phv_Mirwald.png" width="600"/>
 
-```
+```         
 library(ageR)
 
 plot_time2phv_Fransen(data_sample)
 ```
 
-<img src="data-raw/images/plot_time2phv_Fransen.png" width="600" />
+<img src="data-raw/images/plot_time2phv_Fransen.png" width="600"/>
 
 **Maturity Offset Plot** (note the two options for calculating Maturity Offset, Mirwald and Fransen)
 
-```
+```         
 library(ageR)
 
 plot_MatOffset_Mirwald(data_sample)
 ```
 
-<img src="data-raw/images/plot_MatOffset_Mirwald.png" width="600" />
+<img src="data-raw/images/plot_MatOffset_Mirwald.png" width="600"/>
 
-```
+```         
 library(ageR)
 
 plot_MatOffset_Fransen(data_sample)
 ```
 
-<img src="data-raw/images/plot_MatOffset_Fransen.png" width="600" />
+<img src="data-raw/images/plot_MatOffset_Fransen.png" width="600"/>
 
 **Plot Current and Predicted Height of an Athlete against Normal Growth Curves** (must specify the athlete, reference sample, and gender)
 
-```
+```         
 library(ageR)
 
-plot_growthcurve(data_sample, "Athlete 08", "UK", "Male")
+plot_growthcurve(data_sample, c("Athlete 02","Athlete 08"), "UK", "Male")
 ```
 
-<img src="data-raw/images/plot_growthcurveM.png" width="600" />
+<img src="data-raw/images/plot_growthcurveM.png" width="600"/>
 
-```
+```         
 library(ageR)
 
 plot_growthcurve(data_sample, "Athlete 17", "US", "Female")
 ```
 
-<img src="data-raw/images/plot_growthcurveF.png" width="600" />
+<img src="data-raw/images/plot_growthcurveF.png" width="600"/>
 
-**Plot % Adult Height against Maturity Offset**
-(note the two options for calculating Maturity Offset, Mirwald and Fransen. Maturity stages are further highlighted within the graphs)
+**Plot % Adult Height against Maturity Offset** (note the two options for calculating Maturity Offset, Mirwald and Fransen. Maturity stages are further highlighted within the graphs)
 
-```
+```         
 library(ageR)
 
 plot_MatStages_Mirwald(data_sample)
 ```
 
-<img src="data-raw/images/plot_MatStages_Mirwald.png" width="600" />
+<img src="data-raw/images/plot_MatStages_Mirwald.png" width="600"/>
 
-```
+```         
 library(ageR)
 
 plot_MatStages_Fransen(data_sample)
 ```
 
-<img src="data-raw/images/plot_MatStages_Fransen.png" width="600" />
+<img src="data-raw/images/plot_MatStages_Fransen.png" width="600"/>
 
 ## Considerations
 
@@ -186,31 +180,31 @@ This package was built and improved upon the foundations laid by Jose Fernandez 
 
 ## References
 
-**1.** Cumming SP, Lloyd RS, Oliver JL, Eisennnann JC, Malina RM. Bio-banding in sport: Applications to Competition, talent identification, and         strength and conditioning of youth athletes. Strength and Conditioning Journal. 2017;39(2):34–47.
+**1.** Cumming SP, Lloyd RS, Oliver JL, Eisennnann JC, Malina RM. Bio-banding in sport: Applications to Competition, talent identification, and strength and conditioning of youth athletes. Strength and Conditioning Journal. 2017;39(2):34–47.
 
-**2.** Malina RM, Rogol AD, Cumming SP, Coelho-E-Silva MJ, Figueiredo AJ. Biological maturatioon of youth athletes: assessment and implications.        British Journal of Sports Medicine. 2015;49:852-859.
+**2.** Malina RM, Rogol AD, Cumming SP, Coelho-E-Silva MJ, Figueiredo AJ. Biological maturatioon of youth athletes: assessment and implications. British Journal of Sports Medicine. 2015;49:852-859.
 
-**3.** Towlson C, Salter J, Ade J, Enright K, Harper L, Page R, Malone J. Maturity-associated considerations for training load, injury risk, and        physical performance within youth soccer: One size does not fit all. Journal of Sport and Health Science. 2020.
+**3.** Towlson C, Salter J, Ade J, Enright K, Harper L, Page R, Malone J. Maturity-associated considerations for training load, injury risk, and physical performance within youth soccer: One size does not fit all. Journal of Sport and Health Science. 2020.
 
-**4.** Salter J, Cumming S, Hughes JD, De Ste Croix M. Estimating somatic maturity in adolescent soccer players: Methodological comparisons.            InternaGonal Journal of Sports Science & Coaching. 2021;17(1):11–17.
+**4.** Salter J, Cumming S, Hughes JD, De Ste Croix M. Estimating somatic maturity in adolescent soccer players: Methodological comparisons. InternaGonal Journal of Sports Science & Coaching. 2021;17(1):11–17.
 
-**5.** Khamis HJ, Roche AF. Predicting adult stature without using skeletal age - The Khamis-Roche method. Pediatrics. 1994;94(4):504–507. (See         erratum in Pediatrics 1995;95:457.)
+**5.** Khamis HJ, Roche AF. Predicting adult stature without using skeletal age - The Khamis-Roche method. Pediatrics. 1994;94(4):504–507. (See erratum in Pediatrics 1995;95:457.)
 
-**6.** Fransen J, Bush S, Woodcock S, Novak A, Deprez D, Baxter-Jones ADG, Vaeyens R, Lenoir M. Improving the prediction of maturity from               anthropometric variables using a maturity ratio. Pediatr Exerc Sci. 2018;30(2):296–307.
+**6.** Fransen J, Bush S, Woodcock S, Novak A, Deprez D, Baxter-Jones ADG, Vaeyens R, Lenoir M. Improving the prediction of maturity from anthropometric variables using a maturity ratio. Pediatr Exerc Sci. 2018;30(2):296–307.
 
-**7.** Mirwald R.L., Baxter-Jones A.D.G., Bailey D.A., & Beunen, G.P. An assessment of maturity from anthropometric measurements. Medicine and          Science Sports Exercise. 2002;34(4):689–694.
+**7.** Mirwald R.L., Baxter-Jones A.D.G., Bailey D.A., & Beunen, G.P. An assessment of maturity from anthropometric measurements. Medicine and Science Sports Exercise. 2002;34(4):689–694.
 
-**8.** Jose Fernandez (2020). matuR: Athlete Maturation and Biobanding. R package version 0.0.0.9000. https://github.com/josedv82/matuR
+**8.** Jose Fernandez (2020). matuR: Athlete Maturation and Biobanding. R package version 0.0.0.9000. <https://github.com/josedv82/matuR>
 
-**9.** Neyzi, O., Bundak, R., Gökçay, G., Günöz, H., Furman, A., Darendeliler, F., & Baş, F. Reference Values for Weight, Height, Head                  Circumference, and Body Mass Index in Turkish Children. Journal of clinical research in pediatric endocrinology. 2015;7(4):80–293.
+**9.** Neyzi, O., Bundak, R., Gökçay, G., Günöz, H., Furman, A., Darendeliler, F., & Baş, F. Reference Values for Weight, Height, Head Circumference, and Body Mass Index in Turkish Children. Journal of clinical research in pediatric endocrinology. 2015;7(4):80–293.
 
-**10.** Roelantes M, Hauspie R, Hoppenbrowers J. References for growth and pubertal development from birth to 21 years in Flanders, Belgium. Ann        Hum Biol 2009;36:680-694.
+**10.** Roelantes M, Hauspie R, Hoppenbrowers J. References for growth and pubertal development from birth to 21 years in Flanders, Belgium. Ann Hum Biol 2009;36:680-694.
 
-**11.** Juliusson PB, Roelantes M, Nordal E, Furevik L, Eide GE, Moster D, Hauspie R, Bjerknes R. Growth references for 0-19 year old Norwegian         children for length/height, weight, body mass index and head circumference. Ann Hum Biol 2013;40:220-227.
+**11.** Juliusson PB, Roelantes M, Nordal E, Furevik L, Eide GE, Moster D, Hauspie R, Bjerknes R. Growth references for 0-19 year old Norwegian children for length/height, weight, body mass index and head circumference. Ann Hum Biol 2013;40:220-227.
 
 ## Citing this package
 
-```
+```         
 To cite the package ‘ageR’ in publications, use:
 
   Abdurrahman Kikhia (2023). ageR: Athlete Growth & Maturation. R package version 0.1.0.
