@@ -1,0 +1,32 @@
+#' A sample dataset for demonstration purposes.
+#'
+#' All imported datasets to be used in this package \bold{must} follow the same format.
+#'
+#' @details
+#' A data frame containing anonymous, real sample data for demonstration purposes only. It also serves as an example for a template of how user collected data should look.
+#' Use this dataset to learn about the functions on this package.
+#'
+#' @format Data frame with 16 variables and 20 observations:
+#' \describe{
+#'    \item{\bold{Player Name}}{A character string. Name of the subjects.}
+#'    \item{\bold{DOB}}{A date object referring to the Date of Birth for each athlete.}
+#'    \item{\bold{Testing Date}}{A date object referring to the date of testing of each athlete.}
+#'    \item{\bold{Gender}}{A character string. Refers to Male or Female.}
+#'    \item{\bold{Height1 (CM)}}{A number. Height in cms. Measurement 1.}
+#'    \item{\bold{Height2 (CM)}}{A number. Height in cms. Measurement 2.}
+#'    \item{\bold{Height3 (CM)}}{A number. Height in cms. Measurement 3.}
+#'    \item{\bold{Bench Height (CM)}}{A number. If the sitting height is done using a chair or a bench, indicate its length, otherwise use 0.}
+#'    \item{\bold{Sitting Height1 (CM)}}{A number. Length of the trunk in cms for a seated measurement. Measurement 1.}
+#'    \item{\bold{Sitting Height2 (CM)}}{A number. Length of the trunk in cms for a seated measurement. Measurement 2.}
+#'    \item{\bold{Sitting Height3 (CM)}}{A number. Length of the trunk in cms for a seated measurement. Measurement 3.}
+#'    \item{\bold{Weight1 (KG)}}{A number. Weight in kgs. Measurement 1.}
+#'    \item{\bold{Weight2 (KG)}}{A number. Weight in kgs. Measurement 2.}
+#'    \item{\bold{Weight3 (KG)}}{A number. Weight in kgs. Measurement 3.}
+#'    \item{\bold{Mothers Height (CM)}}{A number. The standing height of the athlete's mother in cms.}
+#'    \item{\bold{Fathers Height (CM)}}{A number. The standing height of the athlete's father in cms.}
+#'
+#' }
+#' @usage data_sample2
+#'
+
+"data_sample2"
