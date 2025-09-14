@@ -14,6 +14,7 @@
 #' @param athlete A character string with the name of the athlete we wish to plot.
 #' @param date A character vector. Dates to filter the data (in yyyy-mm-dd).
 #' @param reference A character string. Choose US (CDC), UK (UK90), Turkey (TK), Belgium (BE), or Norway (NO) growth references.
+#' @param gender A character vector. Gender to filter the data (Male or Female).
 #' @return A plot (\code{\bold{ggplot}})
 #'
 #' @export
@@ -23,7 +24,7 @@
 #' plot_growthcurve(data_sample, athlete = c("Athlete 02", "Athlete 08"),"2020-07-01","US")
 #'
 
-plot_growthcurve <- function(data, athlete, date, reference) {
+plot_growthcurve <- function(data, athlete, date, reference, gender = "Male") {
 
   data <- maturation_cm(data)
 

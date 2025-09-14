@@ -1,6 +1,6 @@
 Package: ageR
 Type: Package
-Title: Athlete Growth & Maturation
+Title: An R Package for Athlete Growth & Maturation Calculations and Reporting
 Version: 0.1.0
 Author: Abdurrahman Kikhia
 Maintainer: The package maintainer <yourself@somewhere.net>

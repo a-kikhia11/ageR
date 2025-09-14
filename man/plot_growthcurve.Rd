@@ -4,7 +4,7 @@
 \alias{plot_growthcurve}
 \title{Height (Current + Predicted) vs Reference Growth Curves}
 \usage{
-plot_growthcurve(data, athlete, date, reference)
+plot_growthcurve(data, athlete, date, reference, gender = "Male")
 }
 \arguments{
 \item{data}{A data frame. The object containing the raw data we wish to analyze.}
@@ -14,6 +14,8 @@ plot_growthcurve(data, athlete, date, reference)
 \item{date}{A character vector. Dates to filter the data (in yyyy-mm-dd).}
 
 \item{reference}{A character string. Choose US (CDC), UK (UK90), Turkey (TK), Belgium (BE), or Norway (NO) growth references.}
+
+\item{gender}{A character vector. Gender to filter the data (Male or Female).}
 }
 \value{
 A plot (\code{\bold{ggplot}})
