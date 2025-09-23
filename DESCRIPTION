@@ -19,5 +19,4 @@ Imports:
     ggplot2,
     lubridate,
     magrittr,
-    tidyr,
-    fuzzyjoin
+    tidyr
