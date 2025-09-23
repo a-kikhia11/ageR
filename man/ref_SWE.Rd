@@ -5,7 +5,7 @@
 \alias{ref_SWE}
 \title{Data From The 2000s Swedish Growth Study}
 \format{
-Data frame with 6 variables and 144 observations:
+Data frame with 6 variables and 24 observations:
 \describe{
    \item{\bold{Age}}{Age in years and months}
    \item{\bold{Gender}}{A character string. Refers to Male or Female.}

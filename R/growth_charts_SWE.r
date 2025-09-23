@@ -3,7 +3,7 @@
 #' @details
 #' A data frame containing information from the 2000s Swedish growth reference study. Visit \url{https://pubmed.ncbi.nlm.nih.gov/12200898/} for more details.
 #'
-#' @format Data frame with 6 variables and 144 observations:
+#' @format Data frame with 6 variables and 24 observations:
 #' \describe{
 #'    \item{\bold{Age}}{Age in years and months}
 #'    \item{\bold{Gender}}{A character string. Refers to Male or Female.}
