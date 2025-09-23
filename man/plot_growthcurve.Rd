@@ -18,7 +18,7 @@ plot_growthcurve(data, athlete, date, reference, gender = "Male")
 \item{gender}{A character vector. Gender to filter the data (Male or Female).}
 }
 \value{
-A plot (\code{\bold{ggplot}})
+A plot (\code{ggplot})
 }
 \description{
 This function returns a ggplot object showing the \bold{current} and \bold{predicted height} vs \bold{normal growth charts}. \bold{ALL parameters within the function MUST be occupied.}
@@ -26,7 +26,7 @@ This function returns a ggplot object showing the \bold{current} and \bold{predi
 \details{
 Data for US growth charts was obtained from the National Center for Health Statistics. Please visit \url{https://www.cdc.gov/growthcharts/percentile_data_files.htm} to learn more.
 
-Data for UK growth charts was obtained from the British 1990 growth reference. Please visit \url{https://www.healthforallchildren.com/shop-base/software/lmsgrowth/} and/or refer to the \code{\bold{sitar}} package to learn more.
+Data for UK growth charts was obtained from the British 1990 growth reference. Please visit \url{https://www.healthforallchildren.com/shop-base/software/lmsgrowth/} and/or refer to the \code{sitar} package to learn more.
 
 Be aware, players from different populations to the one used on these growth charts may not be well represented.
 }

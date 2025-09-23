@@ -24,7 +24,7 @@ plot_time2phv_Mirwald(
 \item{gender}{A character vector. Gender of athletes to include in the plot (default to include ALL athletes)}
 }
 \value{
-A dumbbell plot (\code{\bold{ggplot}})
+A dumbbell plot (\code{ggplot})
 }
 \description{
 This function returns a dumbbell plot showing the difference (in years) between current age and estimated age at PHV for each athlete in the dataset using the Mirwald Maturity Offset method. Can be further filtered by athlete, age, and date.

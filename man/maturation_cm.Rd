@@ -17,8 +17,8 @@ A data frame returning 18 variables:
          \item{\bold{Height (CM)}}{The height in cms for each athlete at the time of testing}
          \item{\bold{Estimated Adult Height (CM)}}{The estimated adult height in cms of the athlete using the Khamis-Roche method. See references for further details}
          \item{\bold{\% Adult Height}}{Their current height expressed as \%, compared to their predicted adult height}
-         \item{\bold{Z-Score}}{Estimated biological maturity status expressed as a z-score, using the percentage of adult stature attained at observation and age-specific means and standard deviations followed longitudinally in the Berkeley Growth Study. See references for further details}
-         \item{\bold{Maturity Status (\%AH)}}{A z-score of -0.5 to +0.5 was used to define average maturity status; a z-score greater than +0.5 defined early while a z-score below -0.5 defined late status. See references for further details}
+         \item{\bold{Z-Score}}{Estimated biological maturity timing expressed as a z-score, using the percentage of adult stature attained at observation and age-specific means and standard deviations followed longitudinally in the Berkeley Growth Study. See references for further details}
+         \item{\bold{Maturity Timing (\%AH)}}{A z-score of -0.5 to +0.5 was used to define average maturity timing; a z-score greater than +0.5 defined early while a z-score below -0.5 defined late timing See references for further details}
          \item{\bold{Days Btwn Test}}{The difference between testing dates, in days}
          \item{\bold{Remaining Growth (CM)}}{The difference between their predicted adult height and current height, in cm}
          \item{\bold{Growth (CM)}}{The difference in height between current and previous testing date, in cm}
@@ -33,14 +33,16 @@ A data frame returning 18 variables:
 }
 }
 \usage{
-maturation_cm(data)
+maturation_cm(data, ref = "UK")
 }
 \arguments{
 \item{data}{A data frame. See data_sample for formatting reference.}
+
+\item{ref}{A character string. The growth reference data to be used when calculating Maturity Timing (US = Berkeley Growth Study, UK = UK1990, SWE = 2000s Sweden Growth Study).}
 }
 \description{
 This function returns a dataframe with computed growth and maturation metrics in centimeters (cm) calculated from the imported data. See references for further details about the methodology behind each metric.
-For the same calculations in inches (in) see \code{\bold{maturation_in()}}
+For the same calculations in inches (in) see \code{maturation_in()}
 }
 \examples{
 maturation_cm(data_sample)

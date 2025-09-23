@@ -1,7 +1,7 @@
 #' Data From UK1990 Growth Charts
 #'
 #' @details
-#' A data frame containing information for growth charts from the British 1990 reference data. Visit \url{https://www.healthforallchildren.com/shop-base/software/lmsgrowth/} for more details and or refer to the sitar package.
+#' A data frame containing information for growth charts from the British 1990 reference data. Visit \url{https://www.healthforallchildren.com/shop-base/software/lmsgrowth/} for more details and or refer to the \code{sitar} package.
 #'
 #' @format Data frame with 14 variables and 314 observations:
 #' \describe{
@@ -21,7 +21,7 @@
 #'    \item{\bold{P97}}{Data under percentile 97}
 #'
 #' }
-#' @usage curves_UK90
+#' @usage ref_UK90
 #'
 
-"curves_UK90"
+"ref_UK90"

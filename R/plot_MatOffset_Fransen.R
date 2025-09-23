@@ -9,7 +9,7 @@
 #' @param athlete A character vector. Names of athletes to include in the plot.
 #' @param date A character vector. Dates to filter the data (in yyyy-mm-dd).
 #' @param agegroup A character vector. Age Group of athletes at time of testing.
-#' @return A lollipop plot (\code{\bold{ggplot}})
+#' @return A lollipop plot (\code{ggplot})
 #'
 #' @export
 #' @examples

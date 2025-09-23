@@ -4,7 +4,7 @@
 #'
 #' Data for US growth charts was obtained from the National Center for Health Statistics. Please visit \url{https://www.cdc.gov/growthcharts/percentile_data_files.htm} to learn more.
 #'
-#' Data for UK growth charts was obtained from the British 1990 growth reference. Please visit \url{https://www.healthforallchildren.com/shop-base/software/lmsgrowth/} and/or refer to the \code{\bold{sitar}} package to learn more.
+#' Data for UK growth charts was obtained from the British 1990 growth reference. Please visit \url{https://www.healthforallchildren.com/shop-base/software/lmsgrowth/} and/or refer to the \code{sitar} package to learn more.
 #'
 #' Be aware, players from different populations to the one used on these growth charts may not be well represented.
 #'
@@ -15,7 +15,7 @@
 #' @param date A character vector. Dates to filter the data (in yyyy-mm-dd).
 #' @param reference A character string. Choose US (CDC), UK (UK90), Turkey (TK), Belgium (BE), or Norway (NO) growth references.
 #' @param gender A character vector. Gender to filter the data (Male or Female).
-#' @return A plot (\code{\bold{ggplot}})
+#' @return A plot (\code{ggplot})
 #'
 #' @export
 #' @examples
@@ -29,15 +29,15 @@ plot_growthcurve <- function(data, athlete, date, reference, gender = "Male") {
   data <- maturation_cm(data)
 
   if (reference == "US") {
-    curve_data <- ageR::curves_CDC
+    curve_data <- ageR::ref_CDC
   } else if (reference == "UK") {
-    curve_data <- ageR::curves_UK90
+    curve_data <- ageR::ref_UK90
   } else if (reference == "BE") {
-    curve_data <- ageR::curves_BE
+    curve_data <- ageR::ref_BE
   } else if (reference == "TK") {
-    curve_data <- ageR::curves_TK
+    curve_data <- ageR::ref_TK
   } else if (reference == "NO") {
-    curve_data <- ageR::curves_NO
+    curve_data <- ageR::ref_NO
   } else {
     stop("Invalid reference parameter. Please use 'US' or 'UK'.")
   }

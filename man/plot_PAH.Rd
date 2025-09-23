@@ -27,7 +27,7 @@ plot_PAH(
 \item{metric}{A character vector. Height metric to use (cm, in, ftin).}
 }
 \value{
-A plot (\code{\bold{ggplot}})
+A plot (\code{ggplot})
 }
 \description{
 This function returns a ggplot object showing the predicted adult height for each athlete in the dataset. Can be further filtered by athlete name/id and/or age. Can

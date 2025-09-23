@@ -16,7 +16,7 @@ plot_MatOffset_Fransen(data, athlete = NULL, date = NULL, agegroup = NULL)
 \item{agegroup}{A character vector. Age Group of athletes at time of testing.}
 }
 \value{
-A lollipop plot (\code{\bold{ggplot}})
+A lollipop plot (\code{ggplot})
 }
 \description{
 This function returns a lollipop ggplot showing the offset in years from current age to estimated age at PHV for each athlete in the dataset using the Fransen calculation method. This function can be filtered by athlete(s), date, and age.

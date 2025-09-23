@@ -19,8 +19,8 @@ A data frame returning 20 variables:
          \item{\bold{Estimated Adult Height (IN)}}{The estimated adult height in inches of the athlete using the Khamis-Roche method. See references for further details}
          \item{\bold{Estimated Adult Height (FT'IN")}}{The estimated adult height in feet and inches of the athlete using the Khamis-Roche method. See references for further details}
          \item{\bold{\% Adult Height}}{Their current height expressed as \%, compared to their predicted adult height}
-         \item{\bold{Z-Score}}{Estimated biological maturity status expressed as a z-score, using the percentage of adult stature attained at observation and age-specific means and standard deviations followed longitudinally in the Berkeley Growth Study. See references for further details}
-         \item{\bold{Maturity Status (\%AH)}}{A z-score of -0.5 to +0.5 was used to define average maturity status; a z-score greater than +0.5 defined early while a z-score below -0.5 defined late status. See references for further details}
+         \item{\bold{Z-Score}}{Estimated biological maturity Timing expressed as a z-score, using the percentage of adult stature attained at observation and age-specific means and standard deviations followed longitudinally in the Berkeley Growth Study. See references for further details}
+         \item{\bold{Maturity Timing (\%AH)}}{A z-score of -0.5 to +0.5 was used to define average maturity Timing; a z-score greater than +0.5 defined early while a z-score below -0.5 defined late Timing. See references for further details}
          \item{\bold{Days Btwn Test}}{The difference between testing dates, in days}
          \item{\bold{Estimated Remaining Growth (IN)}}{The difference between their predicted adult height and current height, in inches}
          \item{\bold{Estimated Remaining Growth (FT'IN")}}{The difference between their predicted adult height and current height, in feet and inches}
@@ -36,14 +36,16 @@ A data frame returning 20 variables:
 }
 }
 \usage{
-maturation_in(data)
+maturation_in(data, ref = "US")
 }
 \arguments{
 \item{data}{A data frame. See data_sample for formatting reference.}
+
+\item{ref}{A character string. The growth reference data to be used when calculating Maturity Timing (US = Berkeley Growth Study, UK = UK1990, SWE = 2000s Sweden Growth Study).}
 }
 \description{
 This function returns a dataframe with computed growth and maturation metrics in inches (in) calculated from the imported data. See references for further details about the methodology behind each metric.
-For the same calculations in centimeters (cm) use \code{\bold{maturation_cm()}}
+For the same calculations in centimeters (cm) use \code{maturation_cm()}
 }
 \examples{
 maturation_in(data_sample)

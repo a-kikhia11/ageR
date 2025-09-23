@@ -1,9 +1,10 @@
 #' Growth and Maturation Metrics (in)
 #'
 #' This function returns a dataframe with computed growth and maturation metrics in inches (in) calculated from the imported data. See references for further details about the methodology behind each metric.
-#' For the same calculations in centimeters (cm) use \code{\bold{maturation_cm()}}
+#' For the same calculations in centimeters (cm) use \code{maturation_cm()}
 #'
 #' @param data A data frame. See data_sample for formatting reference.
+#' @param ref A character string. The growth reference data to be used when calculating Maturity Timing (US = Berkeley Growth Study, UK = UK1990, SWE = 2000s Sweden Growth Study).
 #' @format A data frame returning 20 variables:
 #' \describe{
 #'          \item{\bold{Player Name}}{A chracter string. The name of the athlete}
@@ -19,8 +20,8 @@
 #'          \item{\bold{Estimated Adult Height (IN)}}{The estimated adult height in inches of the athlete using the Khamis-Roche method. See references for further details}
 #'          \item{\bold{Estimated Adult Height (FT'IN")}}{The estimated adult height in feet and inches of the athlete using the Khamis-Roche method. See references for further details}
 #'          \item{\bold{\% Adult Height}}{Their current height expressed as \%, compared to their predicted adult height}
-#'          \item{\bold{Z-Score}}{Estimated biological maturity status expressed as a z-score, using the percentage of adult stature attained at observation and age-specific means and standard deviations followed longitudinally in the Berkeley Growth Study. See references for further details}
-#'          \item{\bold{Maturity Status (\%AH)}}{A z-score of -0.5 to +0.5 was used to define average maturity status; a z-score greater than +0.5 defined early while a z-score below -0.5 defined late status. See references for further details}
+#'          \item{\bold{Z-Score}}{Estimated biological maturity Timing expressed as a z-score, using the percentage of adult stature attained at observation and age-specific means and standard deviations followed longitudinally in the Berkeley Growth Study. See references for further details}
+#'          \item{\bold{Maturity Timing (\%AH)}}{A z-score of -0.5 to +0.5 was used to define average maturity Timing; a z-score greater than +0.5 defined early while a z-score below -0.5 defined late Timing. See references for further details}
 #'          \item{\bold{Days Btwn Test}}{The difference between testing dates, in days}
 #'          \item{\bold{Estimated Remaining Growth (IN)}}{The difference between their predicted adult height and current height, in inches}
 #'          \item{\bold{Estimated Remaining Growth (FT'IN")}}{The difference between their predicted adult height and current height, in feet and inches}
@@ -48,16 +49,110 @@
 #'     - Hill, M., Scott, S., Malina, R. M., McGee, D., & Cumming, S. P. (2020). Relative age and maturation selection biases in academy football. Journal of sports sciences, 38(11-12), 1359–1367.
 #'
 #' @export
+#' @importFrom stats approx splinefun
 #' @examples
 #' maturation_in(data_sample)
 #'
 
-maturation_in <- function (data) {
+maturation_in <- function (data, ref = "US") {
 
   inches_to_feet <- function(inches) {
     feet <- floor(inches / 12)
     remaining_inches <- round(inches %% 12,2)
     return(paste0(feet, "'", remaining_inches, '"'))
+  }
+
+  # Function to Calculate Biological Age and Z-score from Reference Data
+  get_maturity <- function(age, height, pah, gender,
+                           reference = c("US","UK","SWE","TK","NO","BE"),
+                           measure = c("z", "bio-age"),
+                           interp = c("linear", "spline")) {
+    reference <- match.arg(reference)
+    measure   <- match.arg(measure)
+    interp    <- match.arg(interp)
+
+    one <- function(age_i, height_i, pah_i, gender_i) {
+      if (is.na(age_i) || is.na(gender_i)) return(NA_real_)
+
+      # Calculate Z-Scores and Bio-Age Sweden (Mean/SD in cm)
+      if (reference == "SWE") {
+        ref <- ageR::ref_SWE
+        ref_g <- ref[tolower(ref$Gender) == tolower(gender_i), ]
+        if (nrow(ref_g) == 0) return(NA_real_)
+
+        # Adult mean height
+        adult_mean <- max(ref_g$`Mean Height`, na.rm = TRUE)
+
+        if (interp == "linear") {
+          mu <- stats::approx(ref_g$Age, ref_g$`Mean AH`, xout = age_i, rule = 2)$y
+          sd <- stats::approx(ref_g$Age, ref_g$`AH SD`,   xout = age_i, rule = 2)$y
+        } else {
+          mu <- stats::splinefun(ref_g$Age, ref_g$`Mean AH`, method = "natural")(age_i)
+          sd <- stats::splinefun(ref_g$Age, ref_g$`AH SD`, method = "natural")(age_i)
+        }
+
+        if (measure == "z") {
+          if (is.na(sd) || sd == 0) return(NA_real_)
+          return((pah_i - mu) / sd)
+        } else if (measure == "bio-age") {
+          return(approx(ref_pct_mean, ref_g$Age, xout = pah_i, rule = 2)$y)
+        }
+      }
+
+      # Calculate Z-Scores and Bio-Age US (already has Mean %AH & SD %AH)
+      if (reference == "US") {
+        ref <- ageR::ref_Berkeley
+        ref_g <- ref[tolower(ref$Gender) == tolower(gender_i), ]
+        if (nrow(ref_g) == 0) return(NA_real_)
+
+        if (interp == "linear") {
+          mu <- stats::approx(ref_g$Age, ref_g$`Mean Adult Height Attained`, xout = age_i, rule = 2)$y
+          sd <- stats::approx(ref_g$Age, ref_g$`Adult Height SD`, xout = age_i, rule = 2)$y
+        } else {
+          mu <- stats::splinefun(ref_g$Age, ref_g$`Mean Adult Height Attained`, method = "natural")(age_i)
+          sd <- stats::splinefun(ref_g$Age, ref_g$`Adult Height SD`, method = "natural")(age_i)
+        }
+
+        if (measure == "z") {
+          if (is.na(sd) || sd == 0) return(NA_real_)
+          return((pah_i - mu) / sd)
+        } else if (measure == "bio-age") {
+          return(stats::approx(ref_g$`Mean Adult Height Attained`, ref_g$Age, xout = pah_i, rule = 2)$y)
+        }
+      }
+
+      # Case 3: Calculate Z-Scores and Bio-Age from LMS references
+      if (reference %in% c("UK", "TK", "BE", "NO")) {
+        ref <- switch(reference,
+                      "UK" = ageR::ref_UK90,
+                      "TK" = ageR::ref_TK,
+                      "BE" = ageR::ref_BE,
+                      "NO" = ageR::ref_NO)
+        ref_g <- ref[tolower(ref$Gender) == tolower(gender_i), ]
+        if (nrow(ref_g) == 0) return(NA_real_)
+
+        # Get Median Adult Height
+        M_adult <- max(ref_g$`M (Median)`, na.rm = TRUE)
+
+        # Convert LMS to %AH mean & SD
+        ref_g$Mean_pah <- 100 * ref_g$`M (Median)` / M_adult
+        ref_g$SD_pah   <- 100 * ref_g$`S (CV)` * ref_g$`M (Median)` / M_adult
+
+        mu <- stats::approx(ref_g$Age, ref_g$Mean_pah, xout = age_i, rule = 2)$y
+        sd <- stats::approx(ref_g$Age, ref_g$SD_pah, xout = age_i, rule = 2)$y
+
+        if (measure == "z") {
+          return((pah_i - mu) / sd)
+        } else if (measure == "bio-age") {
+          # Step 3: invert interpolation: pah_i -> age
+          return(stats::approx(ref_g$Mean_pah, ref_g$Age, xout = pah_i, rule = 2)$y)
+        }
+      }
+
+      return(NA_real_)
+    }
+
+    mapply(one, age, height, pah, gender)
   }
 
   final_table <- data %>%
@@ -83,8 +178,7 @@ maturation_in <- function (data) {
                   `Age * Weight` = `Weight (KG)` * Age,
                   `Fransen Ratio` = 6.986547255416 + (0.115802846632 * Age) + (0.001450825199 * (Age^2)) + (0.004518400406 * `Weight (KG)`) - (0.000034086447 * (`Weight (KG)`^2)) - (0.151951447289 * `Height (CM)`) + (0.000932836659*(`Height (CM)`^2)) - (0.000001656585*(`Height (CM)`^3)) + (0.032198263733*`Leg Length (CM)`) - (0.000269025264*(`Leg Length (CM)`^2)) - (0.000760897942*(`Height (CM)`*Age)),
                   `Fransen APHV` = Age / `Fransen Ratio`) %>%
-    dplyr::mutate(`Parent Mid Height (CM)` = round(((2.803 + (0.953 * `Mothers Height (CM)`)) + (2.316 + (0.955 * `Fathers Height (CM)`))) / 2, 2)) %>%
-    dplyr::mutate(`Parent Mid Height (IN)` = `Parent Mid Height (CM)` * 0.393701) %>%
+    dplyr::mutate(`Parent Mid Height (IN)` = round(((2.803 + (0.953 * (`Mothers Height (CM)`* 0.393701))) + (2.316 + (0.955 * (`Fathers Height (CM)`* 0.393701)))) / 2, 2)) %>%
     dplyr::full_join(ageR::table, by = c("Rounded Age" = "Age")) %>%
     na.omit() %>%
     dplyr::mutate(`Estimated Adult Height (IN)` = ifelse(Gender == "Male", round(`B1` + (`Height (IN)` * `M-Height`) + (`Weight (LB)` * `M-Weight`) + (`Parent Mid Height (IN)` * `M-Midparent Stature`),2), round(`B2` + (`Height (IN)` * `F-Height`) + (`Weight (LB)` * `F-Weight`) + (`Parent Mid Height (IN)` * `F-Midparent Stature`),2))) %>%
@@ -92,20 +186,19 @@ maturation_in <- function (data) {
     dplyr::mutate(`Estimated Adult Height (CM)` = round(`Estimated Adult Height (IN)` * 2.54,2)) %>%
     dplyr::mutate(`% Adult Height` = round((`Height (IN)` / `Estimated Adult Height (IN)`) * 100,2)) %>%
     dplyr::mutate(`PHV Phase` = dplyr::case_when(`% Adult Height` < 88 ~ "Pre-PHV", `% Adult Height` > 94 ~ "Post-PHV", TRUE ~ "Circa-PHV")) %>%
-    dplyr::mutate(`Z-Score` = ifelse(Gender == "Male", round((`% Adult Height` - `M-Adult Height Attained`) / `M-Standard Deviation`,2), round((`% Adult Height` - `F-Adult Height Attained`) / `F-Standard Deviation`,2))) %>%
-    dplyr::mutate(`Maturity Status (%AH)` = ifelse(`Z-Score` > 0.5, "Early", ifelse(`Z-Score` < -0.5, "Late", "On-Time"))) %>%
+    dplyr::mutate(`Z-Score` = get_maturity(Age,`Height (CM)`,`% Adult Height`, Gender, reference = ref, measure = "z", interp = "linear")) %>%
+    dplyr::mutate(`Biological Age` = get_maturity(Age,`Height (CM)`,`% Adult Height`, Gender, reference = ref, measure = "bio-age", interp = "linear")) %>%
+    dplyr::mutate(`Maturity Timing (%AH)` = ifelse(`Z-Score` > 0.5, "Early", ifelse(`Z-Score` < -0.5, "Late", "On-Time"))) %>%
     dplyr::mutate(`Estimated Remaining Growth (CM)` = round((`Estimated Adult Height (CM)` - `Height (CM)`),2)) %>%
     dplyr::mutate(`Estimated Remaining Growth (IN)` = round(`Estimated Remaining Growth (CM)` * 0.393701,2)) %>%
     dplyr::mutate(`Estimated Remaining Growth (FT'IN")` = inches_to_feet(`Estimated Remaining Growth (IN)`)) %>%
     dplyr::mutate(`Mirwald MO (years)` = ifelse(Gender == "Male", round(-9.236 + (0.0002708 * (`Leg Length * Sitting Height`)) + (-0.001663 * `Age * Leg Length`) + (0.007216 * `Age * Sitting Height`) + (0.02292 * `W-H Ratio`),2), round(-9.376 + (0.0001882 * (`Leg Length * Sitting Height`)) + (0.0022 * `Age * Leg Length`) + (0.005841 * `Age * Sitting Height`) + (-0.002658 * `Age * Weight`) + (0.07693 * `W-H Ratio`),2))) %>%
     dplyr::mutate(`Age @ PHV (Mirwald)` = round(Age - `Mirwald MO (years)`,2)) %>%
-    dplyr::mutate(`Fransen MO (years)` = ifelse(Gender == "Male", round(Age - `Fransen APHV`,2), "0")) %>%
-    dplyr::mutate(`Age @ PHV (Fransen)` = ifelse(Gender == "Male", round(`Fransen APHV`,2), "0")) %>%
-    dplyr::mutate(Age = round(Age, 2),
-                  `Height (IN)` = round(`Height (IN)`, 2)) %>%
-    fuzzyjoin::fuzzy_left_join(ageR::ba,by = c("% Adult Height" = "%PAH", "% Adult Height" = "Column2"), match_fun = list(`>=`, `<=`)) %>%
-    dplyr::select(`Player Name`,`Age Group @ Testing`,Gender,`Testing Date`,`Birth Year`,Quarter,Age,`Weight (LB)`,`Height (IN)`,`Height (FT'IN")`,`Estimated Adult Height (IN)`,`Estimated Adult Height (FT'IN")`,`% Adult Height`,`PHV Phase`,`Biological Age`,`Z-Score`,`Maturity Status (%AH)`,`Estimated Remaining Growth (IN)`,`Estimated Remaining Growth (FT'IN")`,`Mirwald MO (years)`,`Age @ PHV (Mirwald)`,`Fransen MO (years)`,`Age @ PHV (Fransen)`) %>%
-    dplyr::mutate_at(vars(Age, `Weight (LB)`, `Height (IN)`, `Estimated Adult Height (IN)`, `% Adult Height`, `Z-Score`, `Estimated Remaining Growth (IN)`, `Mirwald MO (years)`, `Age @ PHV (Mirwald)`, `Fransen MO (years)`, `Age @ PHV (Fransen)`), as.numeric) %>%
+    dplyr::mutate(`Fransen MO (years)` = round(Age - `Fransen APHV`,2)) %>%
+    dplyr::mutate(`Age @ PHV (Fransen)` = round(`Fransen APHV`,2)) %>%
+    dplyr::mutate(Age = round(Age, 2),`Height (IN)` = round(`Height (IN)`, 2), `Fransen Ratio` = round(`Fransen Ratio`,2)) %>%
+    dplyr::select(`Player Name`,`Age Group @ Testing`,Gender,DOB,`Birth Year`,Quarter,`Testing Date`,Age,`Weight (LB)`,`Height (IN)`,`Height (FT'IN")`,`Estimated Adult Height (IN)`,`Estimated Adult Height (FT'IN")`,`% Adult Height`,`PHV Phase`,`Biological Age`,`Z-Score`,`Maturity Timing (%AH)`,`Estimated Remaining Growth (IN)`,`Estimated Remaining Growth (FT'IN")`,`Mirwald MO (years)`,`Age @ PHV (Mirwald)`,`Fransen Ratio`,`Fransen MO (years)`,`Age @ PHV (Fransen)`) %>%
+    dplyr::mutate_at(vars(Age, `Weight (LB)`, `Height (IN)`, `Estimated Adult Height (IN)`, `% Adult Height`, `Z-Score`, `Estimated Remaining Growth (IN)`, `Mirwald MO (years)`, `Age @ PHV (Mirwald)`, `Fransen Ratio`, `Fransen MO (years)`, `Age @ PHV (Fransen)`), as.numeric) %>%
     dplyr::mutate(`Bio-Band` = ifelse(`% Adult Height` < 85, "Pre-Pubertal",
                                         ifelse(`% Adult Height` >= 85 & `% Adult Height` < 90, "Early Pubertal",
                                                ifelse(`% Adult Height` >= 90 & `% Adult Height` < 95, "Mid-Pubertal", "Late Pubertal")))) %>%
@@ -117,8 +210,8 @@ maturation_in <- function (data) {
                   `Weight Diff. (LB)` = `Weight (LB)` - lag(`Weight (LB)`),
                   `Weight Velocity (lb/yr)` = round((`Weight Diff. (LB)` / `Days Btwn Tests`) * 365,2)) %>% dplyr::ungroup() %>%
     dplyr::mutate(across(c(`Days Btwn Tests`,`Growth (IN)`,`Growth Velocity (in/yr)`,`Weight Diff. (LB)`,`Weight Velocity (lb/yr)`), ~ ifelse(is.na(.),"",round(.,2)))) %>%
-    dplyr::select(`Player Name`,`Age Group @ Testing`,Gender,`Testing Date`,`Birth Year`,Quarter,Age,`Weight (LB)`,`Height (IN)`,`Height (FT'IN")`,`Estimated Adult Height (IN)`,`Estimated Adult Height (FT'IN")`,`% Adult Height`,`PHV Phase`,`Biological Age`,`Z-Score`,`Maturity Status (%AH)`,
-                  `Days Btwn Tests`,`Estimated Remaining Growth (IN)`,`Estimated Remaining Growth (FT'IN")`,`Growth (IN)`,`Growth Velocity (in/yr)`,`Weight Diff. (LB)`,`Weight Velocity (lb/yr)`,`Mirwald MO (years)`,`Age @ PHV (Mirwald)`,`Fransen MO (years)`,`Age @ PHV (Fransen)`)
+    dplyr::select(`Player Name`,`Age Group @ Testing`,Gender,DOB,`Birth Year`,Quarter,`Testing Date`,Age,`Weight (LB)`,`Height (IN)`,`Height (FT'IN")`,`Estimated Adult Height (IN)`,`Estimated Adult Height (FT'IN")`,`% Adult Height`,`PHV Phase`,`Biological Age`,`Z-Score`,`Maturity Timing (%AH)`,
+                  `Days Btwn Tests`,`Estimated Remaining Growth (IN)`,`Estimated Remaining Growth (FT'IN")`,`Growth (IN)`,`Growth Velocity (in/yr)`,`Weight Diff. (LB)`,`Weight Velocity (lb/yr)`,`Mirwald MO (years)`,`Age @ PHV (Mirwald)`,`Fransen Ratio`,`Fransen MO (years)`,`Age @ PHV (Fransen)`)
 
   return(final_table)
 

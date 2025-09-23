@@ -9,7 +9,7 @@
 #' @param agegroup A character vector. Age Group of athletes at time of testing.
 #' @param gender A character vector. Gender of athletes you wish to analyze.
 #' @param metric A character vector. Height metric to use (cm, in, ftin).
-#' @return A plot (\code{\bold{ggplot}})
+#' @return A plot (\code{ggplot})
 #'
 #' @export
 #' @examples
