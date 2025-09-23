@@ -202,6 +202,12 @@ This package was built and improved upon the foundations laid by Jose Fernandez 
 
 **11.** Juliusson PB, Roelantes M, Nordal E, Furevik L, Eide GE, Moster D, Hauspie R, Bjerknes R. Growth references for 0-19 year old Norwegian children for length/height, weight, body mass index and head circumference. Ann Hum Biol 2013;40:220-227.
 
+**12.** Epstein, L.H et al. Do children lose and maintain weight easier than adults: a comparison of child and parent weight changes from six months to ten years. Obesity research vol. 1995;3(5):411-7
+
+**13.** Sweeney L., MacNamara Á., Taylor J., & Lundberg T.R. Selection of reference data significantly influences biological maturity timing classification in national youth soccer players. International Journal of Sports Science & Coaching, 2024;19(6):2356-2365.
+
+**14.** Rommers N., Teunissen J.W., Cumming S., Pion J., Rössler R., D'Hondt E., Lenoir M., Malina R.M., & Savelsbergh G. Accuracy of maturity prediction equations in individual elite football players, Annals of Human Biology, 2020;47(4):409-416
+
 ## Citing this package
 
 ```         
