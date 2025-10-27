@@ -152,7 +152,7 @@ maturation_in <- function (data, ref = "US") {
       return(NA_real_)
     }
 
-    mapply(one, age, height, pah, gender)
+    mapply(one, age, height, pah, gender, SIMPLIFY = TRUE, USE.NAMES = FALSE)
   }
 
   final_table <- data %>%
